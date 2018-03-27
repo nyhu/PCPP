@@ -5,7 +5,7 @@
 
 ZombieEvent::ZombieEvent()
 {
-    this->type = "walker";
+    this->type = ZOMBIE_DEFAULT_TYPE;
     std::cout << "walker zombies will soon arise" << std::endl;
     srand(time(0));
 }
