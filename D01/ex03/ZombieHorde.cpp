@@ -10,8 +10,8 @@ ZombieHorde::ZombieHorde(int nb) : _nb(nb) {
 }
 
 ZombieHorde::~ZombieHorde() {
-    delete [] this->_zombies;
     std::cout << "horde is dead" << std::endl;
+    delete [] this->_zombies;
 }
 
 void ZombieHorde::annonce(void){

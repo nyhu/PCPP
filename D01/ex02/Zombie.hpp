@@ -6,8 +6,8 @@
 class Zombie
 {
   public:
-    Zombie(std::string name, std::string type = ZOMBIE_DEFAULT_TYPE);
     Zombie();
+    Zombie(std::string name, std::string type = ZOMBIE_DEFAULT_TYPE);
     ~Zombie();
 
     void annonce(void);
