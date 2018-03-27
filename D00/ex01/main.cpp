@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip> 
+#include <limits> 
 #include "Contact.hpp"
 
 static void search(Contact *contacts) {

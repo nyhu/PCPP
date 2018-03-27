@@ -3,6 +3,10 @@ CC = clang++
 CFLAGS = -Wall -Wextra -Werror
 SRC = Contact.cpp main.cpp
 
+ifeq ($(OS), Linux)
+	CFLAGS += -std=c++11
+endif
+
 $(NAME):
 	$(CC) $(CFLAGS) -o $(NAME) $(SRC)
 

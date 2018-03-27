@@ -3,6 +3,10 @@ CC = clang++
 CFLAGS = -Wall -Wextra -Werror
 SRC = megaphone.cpp
 
+ifeq ($(OS), Linux)
+	CFLAGS += -std=c++11
+endif
+
 $(NAME):
 	$(CC) $(CFLAGS) -o $(NAME) $(SRC)
 

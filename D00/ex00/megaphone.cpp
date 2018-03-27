@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 char* strToUpper(char *str) {
     char *p;
