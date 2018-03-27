@@ -4,6 +4,11 @@ FLAGS = -Wall -Wextra -Werror
 SRC = tests.cpp	\
 			Account.class.cpp
 OBJ	=	$(SRC:.cpp=.o)
+OS = $(shell uname -s)
+
+ifeq ($(OS), Linux)
+	FLAGS += -std=c++11
+endif
 
 all: $(OBJ)
 	$(CC) -o $(NAME) $(FLAGS) $(OBJ)

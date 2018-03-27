@@ -106,9 +106,9 @@ void Account::displayAccountsInfos(void) {
 void Account::_displayTimestamp( void )
 {
 	char		str[100];
-	std::time_t	t;
+	time_t	t;
 
-    std::time(&t);
-	if (std::strftime(str, sizeof(str), "[%Y%m%d_%H%M%S] ", std::localtime(&t)))
+    time(&t);
+	if (strftime(str, sizeof(str), "[%Y%m%d_%H%M%S] ", localtime(&t)))
 		std::cout << str;
 }
