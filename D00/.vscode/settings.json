@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "cctype": "cpp",
+        "cstddef": "cpp",
+        "cstdio": "cpp",
+        "exception": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "ostream": "cpp",
+        "streambuf": "cpp",
+        "iomanip": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp",
+        "initializer_list": "cpp",
+        "new": "cpp",
+        "stdexcept": "cpp",
+        "typeinfo": "cpp",
+        "cstdlib": "cpp"
+    }
+}
