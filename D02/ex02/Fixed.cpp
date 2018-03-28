@@ -45,21 +45,26 @@ Fixed &	Fixed::operator-(Fixed const & rhs) {
 
 Fixed &	Fixed::operator*(Fixed const & rhs) {
 	std::cout << "Multiplication operator called" << std::endl;
-	this->raw_value *= rhs.getRawBits();
+    long safe = this->getRawBits();
+	safe *= rhs.getRawBits();
+    safe >>= Fixed::_binary_point;
+    this->raw_value = int(safe);
 
 	return *this;
 }
 
 Fixed &	Fixed::operator/(Fixed const & rhs) {
 	std::cout << "Division operator called" << std::endl;
-	this->raw_value /= rhs.getRawBits();
+    long safe = this->getRawBits() << Fixed::_binary_point;
+	safe /= rhs.getRawBits();
+    this->raw_value = int(safe);
 
 	return *this;
 }
 
 Fixed &	Fixed::operator++() {
 	std::cout << "Prefix increment operator called" << std::endl;
-	this->raw_value += (1 << Fixed::_binary_point);
+	this->raw_value++;
 
 	return *this;
 }
@@ -67,14 +72,14 @@ Fixed &	Fixed::operator++() {
 Fixed Fixed::operator++(int) {
 	std::cout << "Postfix increment operator called" << std::endl;
     Fixed tmp = *this;
-	this->raw_value += (1 << Fixed::_binary_point);
+	this->raw_value++;
     
 	return tmp;
 }
 
 Fixed &	Fixed::operator--() {
 	std::cout << "Prefix decrement operator called" << std::endl;
-	this->raw_value -= (1 << Fixed::_binary_point);
+	this->raw_value--;
 
 	return *this;
 }
@@ -82,7 +87,7 @@ Fixed &	Fixed::operator--() {
 Fixed Fixed::operator--(int) {
 	std::cout << "Postfix decrement operator called" << std::endl;
     Fixed tmp = *this;
-	this->raw_value -= (1 << Fixed::_binary_point);
+	this->raw_value--;
     
 	return tmp;
 }
@@ -127,10 +132,6 @@ void Fixed::setRawBits(int const raw) {
 	this->raw_value = raw;
 }
 
-std::ostream & operator<<(std::ostream & o, Fixed const & i) {
-	return o << i.toFloat();
-}
-
 Fixed &Fixed::min(Fixed &f1, Fixed &f2) {
     if (f1 > f2) {
         return f2;
@@ -145,7 +146,6 @@ Fixed const &Fixed::min(const Fixed &f1, const Fixed &f2) {
     return f1;
 }
 
-
 Fixed &Fixed::max(Fixed &f1, Fixed &f2) {
     if (f1 > f2) {
         return f1;
@@ -158,4 +158,8 @@ Fixed const &Fixed::max(const Fixed &f1, const Fixed &f2) {
         return f1;
     }
     return f2;
+}
+
+std::ostream & operator<<(std::ostream & o, Fixed const & i) {
+	return o << i.toFloat();
 }
