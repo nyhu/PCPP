@@ -1,7 +1,7 @@
-NAME = replace
+NAME = human
 CC = clang++
 FLAGS = -Wall -Wextra -Werror
-SRC = main.cpp FileSystem.cpp
+SRC = main.cpp Human.cpp
 OBJ	= $(SRC:.cpp=.o)
 
 all: $(OBJ)
