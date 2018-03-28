@@ -30,12 +30,13 @@ void FileSystem::replace(std::string s1, std::string s2) {
     std::string line;
     while(!this->_fileInput.eof()) {
         size_t offset = 0;
-        std::getline(this->_fileInput, line);
-        while ((offset = line.find(s1, offset)) != std::string::npos) {
-            std::cout << "found: " << s1 << " at position " << offset << std::endl;
-            line.replace(offset, s1.length(), s2);
-            offset += 1;
-        }
-        this->_fileOutput << line << std::endl;
+        if (std::getline(this->_fileInput, line)) {
+       		while ((offset = line.find(s1, offset)) != std::string::npos) {
+        	    std::cout << "found: " << s1 << " at position " << offset << std::endl;
+        	    line.replace(offset, s1.length(), s2);
+        	    offset += 1;
+        	}
+        	this->_fileOutput << line << std::endl;
+		}
     }
 }

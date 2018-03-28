@@ -27,21 +27,6 @@ Zombie *ZombieEvent::newZombie(std::string name)
 
 void ZombieEvent::randomChump()
 {
-    std::string tab[] = {
-        "budz",
-        "pain",
-        "konan",
-        "nagato",
-        "itachi",
-        "tobi",
-        "madara",
-        "naruto",
-        "danzou",
-        "kakashi",
-    };
-
-    std::string name = tab[rand() % (sizeof(tab) / sizeof(tab[0]))];
-
-    Zombie zombie(name, this->type);
+    Zombie zombie(getRandomZombieName(), this->type);
     zombie.annonce();
 }
