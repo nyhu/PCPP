@@ -1,38 +1,38 @@
-#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
-FragTrap::FragTrap() : _name("unkownBox"),
+ScavTrap::ScavTrap() : _name("UnkownScavBox"),
                        _lvl(1),
                        _hitPt(100),
                        _maxHitPt(100),
-                       _energyPt(100),
-                       _maxEnergyPt(100),
-                       _meleeDmg(30),
-                       _rangeDmg(20),
-                       _armorDmgReduction(5)
+                       _energyPt(50),
+                       _maxEnergyPt(50),
+                       _meleeDmg(20),
+                       _rangeDmg(15),
+                       _armorDmgReduction(3)
 {
     srand(time(0));
-    std::cout << "A new FR4G-TP called unknownBox emerge from the dump"
+    std::cout << "A new SC4V-TP called UnkownScavBox emerge from the dump"
               << std::endl;
 }
 
-FragTrap::FragTrap(const std::string name) : _name(name),
+ScavTrap::ScavTrap(const std::string name) : _name(name),
                                              _lvl(1),
                                              _hitPt(100),
                                              _maxHitPt(100),
-                                             _energyPt(100),
-                                             _maxEnergyPt(100),
-                                             _meleeDmg(30),
-                                             _rangeDmg(20),
-                                             _armorDmgReduction(5)
+                                             _energyPt(50),
+                                             _maxEnergyPt(50),
+                                             _meleeDmg(20),
+                                             _rangeDmg(15),
+                                             _armorDmgReduction(3)
 {
     srand(time(0));
-    std::cout << "A new FR4G-TP called "
+    std::cout << "A new SC4V-TP called "
               << name
               << " emerge from the dump"
               << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &f) : _name(f._name),
+ScavTrap::ScavTrap(const ScavTrap &f) : _name(f._name),
                                         _lvl(f._lvl),
                                         _hitPt(f._hitPt),
                                         _maxHitPt(f._maxHitPt),
@@ -43,21 +43,21 @@ FragTrap::FragTrap(const FragTrap &f) : _name(f._name),
                                         _armorDmgReduction(f._armorDmgReduction)
 {
     srand(time(0));
-    std::cout << "A new FR4G-TP called "
+    std::cout << "A new SC4V-TP called "
               << f._name
               << " emerge from the dump"
               << std::endl;
 }
 
-FragTrap::~FragTrap()
+ScavTrap::~ScavTrap()
 {
-    std::cout << "And yet again a FR4G-TP called "
+    std::cout << "And yet again a SC4V-TP called "
               << this->_name
               << " being fragged back to the dump"
               << std::endl;
 }
 
-FragTrap &FragTrap::operator=(const FragTrap &f)
+ScavTrap &ScavTrap::operator=(const ScavTrap &f)
 {
     this->_name = f._name;
     this->_lvl = f._lvl;
@@ -70,9 +70,9 @@ FragTrap &FragTrap::operator=(const FragTrap &f)
     return *this;
 }
 
-void FragTrap::meleeAttack(const std::string &target)
+void ScavTrap::meleeAttack(const std::string &target)
 {
-    std::cout << "FR4G-TP "
+    std::cout << "SC4V-TP "
               << this->_name
               << " attack "
               << target
@@ -82,9 +82,9 @@ void FragTrap::meleeAttack(const std::string &target)
               << std::endl;
 }
 
-void FragTrap::rangeAttack(const std::string &target)
+void ScavTrap::rangeAttack(const std::string &target)
 {
-    std::cout << "FR4G-TP "
+    std::cout << "SC4V-TP "
               << this->_name
               << " attack "
               << target
@@ -94,92 +94,82 @@ void FragTrap::rangeAttack(const std::string &target)
               << std::endl;
 }
 
-void FragTrap::vaulthunter_dot_exe(const std::string &target)
+void ScavTrap::challengeNewcommer(const std::string &target)
 {
-    typedef void (FragTrap::*vaultAttack)(const std::string &target);
-    static vaultAttack attacksArr[] = {
-        &FragTrap::_vaultAttack0,
-        &FragTrap::_vaultAttack1,
-        &FragTrap::_vaultAttack2,
-        &FragTrap::_vaultAttack3,
-        &FragTrap::_vaultAttack4,
+    typedef void (ScavTrap::*vaultChallenge)(const std::string &target);
+    static vaultChallenge challengesArr[] = {
+        &ScavTrap::_vaultChallenge0,
+        &ScavTrap::_vaultChallenge1,
+        &ScavTrap::_vaultChallenge2,
+        &ScavTrap::_vaultChallenge3,
+        &ScavTrap::_vaultChallenge4,
     };
 
     if (this->_energyPt >= 25)
     {
         this->_energyPt -= 25;
-        (this->*(attacksArr[rand() % 5]))(target);
+        (this->*(challengesArr[rand() % 5]))(target);
     }
     else
     {
         std::cout << "due to nrj lvl, "
                   << this->_name
-                  << " is unable to perform a vaultAttack yet !"
+                  << " is unable to perform a vaultChallenge yet !"
                   << std::endl;
     }
 }
 
-void FragTrap::_vaultAttack0(const std::string &target)
+void ScavTrap::_vaultChallenge0(const std::string &target)
 {
-    std::cout << "FR4G-TP "
+    std::cout << "SC4V-TP "
               << this->_name
-              << " vaultAttack "
+              << " vaultChallenge "
               << target
-              << " as A BANANA dangling monkey throwing bottle so hard they become yellow, it does 3 x "
-              << this->_rangeDmg
-              << " damages points !!!"
+              << " to find A RUSTY BOX throwing bottles so hard they become yellow !!!"
               << std::endl;
 }
 
-void FragTrap::_vaultAttack1(const std::string &target)
+void ScavTrap::_vaultChallenge1(const std::string &target)
 {
-    std::cout << "FR4G-TP "
+    std::cout << "SC4V-TP "
               << this->_name
-              << " vaultAttack "
+              << " vaultChallenge "
               << target
-              << " as A SPINNNNNNING BOT, it does 3 x "
-              << this->_meleeDmg
-              << " damages points !!!"
+              << " to  SPINNNNNN until it reaches the moon"
               << std::endl;
 }
 
-void FragTrap::_vaultAttack2(const std::string &target)
+void ScavTrap::_vaultChallenge2(const std::string &target)
 {
-    std::cout << "FR4G-TP "
+    std::cout << "SC4V-TP "
               << this->_name
-              << " vaultAttack "
+              << " vaultChallenge "
               << target
-              << " like a baby, it does only "
-              << 1
-              << " damages points !!! What's a shame"
+              << " to end the game in the strongest difficulty !"
               << std::endl;
 }
 
-void FragTrap::_vaultAttack3(const std::string &target)
+void ScavTrap::_vaultChallenge3(const std::string &target)
 {
-    std::cout << "FR4G-TP "
+    std::cout << "SC4V-TP "
               << this->_name
-              << " vaultAttack "
+              << " vaultChallenge "
               << target
-              << " like NEVER BEFORE, it does an instaant "
-              << 100
-              << " damages points !!! The bandit will never survive this !"
+              << " like NEVER BEFORE, he'll have to do the next mission naked ! This game is allready above PEGI 18 anyway."
               << std::endl;
 }
 
-void FragTrap::_vaultAttack4(const std::string &target)
+void ScavTrap::_vaultChallenge4(const std::string &target)
 {
-    std::cout << "FR4G-TP "
+    std::cout << "SC4V-TP "
               << this->_name
-              << " vaultAttack "
+              << " vaultChallenge "
               << target
-              << " like a GASOLINE ROCKET, it flies up and falls on the target doing "
-              << 70
-              << " damages points !!! Marvellous !"
+              << " to fart on a wild animal before running, not along the way !"
               << std::endl;
 }
 
-void FragTrap::takeDmg(unsigned int amount)
+void ScavTrap::takeDmg(unsigned int amount)
 {
     if ((unsigned int)(this->_armorDmgReduction) < amount)
     {
@@ -187,7 +177,7 @@ void FragTrap::takeDmg(unsigned int amount)
         if (this->_hitPt <= 0)
         {
             this->_hitPt = 0;
-            std::cout << "FR4G-TP "
+            std::cout << "SC4V-TP "
                       << this->_name
                       << " takes "
                       << (amount - this->_armorDmgReduction)
@@ -196,7 +186,7 @@ void FragTrap::takeDmg(unsigned int amount)
         }
         else
         {
-            std::cout << "FR4G-TP "
+            std::cout << "SC4V-TP "
                       << this->_name
                       << " takes "
                       << (amount - this->_armorDmgReduction)
@@ -208,14 +198,14 @@ void FragTrap::takeDmg(unsigned int amount)
     }
     else
     {
-        std::cout << "FR4G-TP "
+        std::cout << "SC4V-TP "
                   << this->_name
                   << " takes no damage from the attack !"
                   << std::endl;
     }
 }
 
-void FragTrap::beRepaired(unsigned int amount)
+void ScavTrap::beRepaired(unsigned int amount)
 {
     int mem = this->_hitPt;
     this->_hitPt += amount;
@@ -223,7 +213,7 @@ void FragTrap::beRepaired(unsigned int amount)
     {
         this->_hitPt = this->_maxHitPt;
     }
-    std::cout << "FR4G-TP "
+    std::cout << "SC4V-TP "
               << this->_name
               << " was repared for "
               << (this->_hitPt - mem)

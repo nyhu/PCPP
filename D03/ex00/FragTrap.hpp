@@ -1,7 +1,6 @@
 #ifndef __FRAG_TRAP__
 #define __FRAG_TRAP__
 
-
 #include <string>
 #include <iostream>
 #include <ctime>
@@ -10,6 +9,7 @@
 class FragTrap
 {
   public:
+    FragTrap();
     FragTrap(const std::string name);
     FragTrap(const FragTrap &fragTrap);
     ~FragTrap();
