@@ -1,0 +1,1 @@
+../ex03/NinjaTrap.cpp
