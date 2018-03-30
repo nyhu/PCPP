@@ -17,11 +17,22 @@ int main()
 	}
 		std::cout <<std::endl << "PERSO tests" << std::endl;
 	{
+		Victim t;
+		Victim v("Macron");
+		Victim vv = v;
+
+		Peon p;
 		Peon joe("Joe");
 		Peon joey = joe;
 		Victim joel = joe;
 
+		Sorcerer ss;
+		Sorcerer src("Ladie", "Gaga");
+		Sorcerer s = src;
 		joe.getPolymorphed();
+		ss.polymorph(joel);
+		ss.polymorph(v);
+		std::cout << joe << joey << joel << src << s;
 	}
 	return (0);
 }

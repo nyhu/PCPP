@@ -1,5 +1,11 @@
 #include "Victim.hpp"
 
+Victim::Victim(void)
+	: name("Victor")
+{
+	std::cout << "Some random victim called " << this->name << " just popped !" << std::endl;
+}
+
 Victim::Victim(std::string name)
 	: name(name)
 {
@@ -10,12 +16,6 @@ Victim::Victim(Victim const &src)
 	: name(src.getName())
 {
 	std::cout << "Some random victim called " << name << " just popped !" << std::endl;
-}
-
-Victim::Victim(void)
-	: name("Victor")
-{
-	std::cout << "Some random victim called " << this->name << " just popped !" << std::endl;
 }
 
 Victim::~Victim()

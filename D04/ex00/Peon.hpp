@@ -6,15 +6,13 @@
 class Peon : public Victim
 {
 
-  public:
+public:
+	Peon(void);
 	Peon(std::string name);
-	Peon(Peon const &src);
+	Peon(Peon const &p);
 	~Peon();
 
 	void getPolymorphed() const;
-
-  private:
-	Peon(void);
 };
 
 #endif
