@@ -1,7 +1,7 @@
 NAME = clapclap
 CC = clang++
 FLAGS = -Wall -Wextra -Werror
-SRC = main.cpp FragTrap.cpp ScavTrap.cpp ClapTrap.cpp NinjaTrap.cpp
+SRC = FragTrap.cpp ScavTrap.cpp ClapTrap.cpp NinjaTrap.cpp SuperTrap.cpp main.cpp
 OBJ	= $(SRC:.cpp=.o)
 
 all: $(OBJ)
