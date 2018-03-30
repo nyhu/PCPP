@@ -14,6 +14,9 @@ Sorcerer::Sorcerer(Sorcerer const &src)
 
 Sorcerer::Sorcerer(void)
 {
+	this->name = "Robert";
+	this->title = "apprentice";
+	std::cout << this->name << ", " << this->title << ", is born !" << std::endl;
 }
 
 Sorcerer::~Sorcerer()

@@ -16,3 +16,7 @@ void PlasmaRifle::attack(void) const
 {
 	std::cout << "* piouuu piouuu piouuu *" << std::endl;
 }
+
+//PlasmaRifle &PlasmaRifle::operator=(PlasmaRifle const &rhs) {
+//	this->AWeapon	
+//}

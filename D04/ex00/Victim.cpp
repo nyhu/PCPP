@@ -13,7 +13,9 @@ Victim::Victim(Victim const &src)
 }
 
 Victim::Victim(void)
+	: name("Victor")
 {
+	std::cout << "Some random victim called " << this->name << " just popped !" << std::endl;
 }
 
 Victim::~Victim()

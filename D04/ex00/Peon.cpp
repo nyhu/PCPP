@@ -2,7 +2,6 @@
 
 Peon::Peon(std::string name) : Victim(name)
 {
-	this->name = name;
 	std::cout << "Zog zog." << std::endl;
 }
 
@@ -12,8 +11,9 @@ Peon::Peon(Peon const &src) : Victim(src)
 	std::cout << "Zog zog." << std::endl;
 }
 
-Peon::Peon(void)
+Peon::Peon(void) : Victim("Popol")
 {
+	std::cout << "Zog zog." << std::endl;
 }
 
 Peon::~Peon()
