@@ -37,6 +37,8 @@ int main()
 
 	zaz->attack(b);
 	std::cout << *zaz;
+	
+	*pr = *pr;
 	zaz->equip(pr);
 	std::cout << *zaz;
 	zaz->attack(b);

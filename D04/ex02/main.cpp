@@ -26,5 +26,6 @@ int main()
 	}
 	ISquad *test = vlc;
 	delete test;
+	// delete kek; // should segfault
 	return 0;
 }

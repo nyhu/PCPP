@@ -11,7 +11,7 @@ Squad::Squad(Squad const &src) : _list(NULL), _count(0)
 	this->cloneFrom(src);
 }
 
-Squad::~Squad(void)
+Squad::~Squad()
 {
 	this->destroyChilds();
 }

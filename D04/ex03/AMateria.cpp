@@ -43,6 +43,5 @@ unsigned int AMateria::getXP() const
 void AMateria::use(ICharacter &target)
 {
 	(void)target;
-	std::cout << "tutu" << '\n';
 	this->xp_ += 10;
 }
