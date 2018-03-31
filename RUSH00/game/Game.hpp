@@ -5,6 +5,7 @@
 #include <iostream>
 #include <signal.h>
 #include <cstring>
+#include <time.h>
 
 #include "../settings/settings.hpp"
 #include "../display/Display.hpp"
@@ -23,6 +24,7 @@ public:
 
 private:
   void annonce();
+  void takeInputUntilNextFrame();
   void computePlayfield();
   void computeMoves();
 

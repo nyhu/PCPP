@@ -6,4 +6,5 @@
 #define PLAYGROUND_W 150 // n_col
 #define PLAYGROUND_H 50 // n_col
 
+#define FRAME_CLOCK 100000
 #endif

@@ -38,16 +38,33 @@ void Game::play()
 {
     while (42)
     {
-        int input = 0;
-        this->p1.resetControl();
-        while ((input = getch()) != ERR)
-            this->p1.control(input);
+        takeInputUntilNextFrame();
 
         computeMoves();
         computePlayfield();
 
         while (this->display->render(this->playfield))
             std::cout << "please resize your window";
+    }
+}
+
+void Game::takeInputUntilNextFrame()
+{
+    int time_left = 0;
+    clock_t x_startTime, x_countTime;
+
+    this->p1.resetControl();
+
+    x_startTime = clock();
+    time_left = FRAME_CLOCK;
+    while (time_left > 0)
+    {
+        int input = 0;
+        while ((input = getch()) != ERR)
+            this->p1.control(input);
+
+        x_countTime = clock();
+        time_left = FRAME_CLOCK + x_startTime - x_countTime;
     }
 }
 
