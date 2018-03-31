@@ -29,9 +29,7 @@ Game::~Game()
 Game &Game::operator=(const Game &g)
 {
     if (this->display)
-    {
         delete this->display;
-    }
     this->display = new Display(*g.display);
     return *this;
 }
@@ -40,8 +38,26 @@ void Game::play()
 {
     while (42)
     {
-        while (this->display->render()) { // on error ask to resize
+        int input = 0;
+        this->p1.resetControl();
+        while ((input = getch()) != ERR)
+            this->p1.control(input);
+
+        computeMoves();
+        computePlayfield();
+
+        while (this->display->render(this->playfield))
             std::cout << "please resize your window";
-        }
     }
+}
+
+void Game::computeMoves()
+{
+    this->p1.move();
+}
+
+void Game::computePlayfield()
+{
+    std::memset(this->playfield, ' ', PLAYGROUND_H * PLAYGROUND_W);
+    this->playfield[this->p1.getPosY()][this->p1.getPosX()] = this->p1.getOutput();
 }

@@ -1,7 +1,11 @@
 NAME = ft_retro
 CC = clang++
 FLAGS = -Wall -Wextra -Werror 
-SRC = main.cpp game/Game.cpp display/Display.cpp
+SRC = main.cpp \
+	game/Game.cpp \
+	display/Display.cpp \
+	entity/player/Player.cpp \
+	entity/ships/AShip.cpp
 OBJ	= $(SRC:.cpp=.o)
 OS = $(shell uname -s)
 

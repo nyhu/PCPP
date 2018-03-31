@@ -2,11 +2,11 @@
 
 Display::Display()
 {
-    initscr();            // init ncurse
-    cbreak();             // desactivate input buffering: one char at a time
-    noecho();             // doesn't echo input characters
-    nodelay(stdscr, TRUE);// getch() return imediatly if no key is pressed
-    keypad(stdscr, TRUE); // get special char like arrows and delete
+    initscr();             // init ncurse
+    // cbreak();              // desactivate input buffering: one char at a time
+    noecho();              // doesn't echo input characters
+    nodelay(stdscr, TRUE); // getch() return imediatly if no key is pressed
+    keypad(stdscr, TRUE);  // get special char like arrows and delete
 
     start_color(); // init color usage
     init_pair(NORMAL_COLOR, COLOR_WHITE, COLOR_BLACK);
@@ -71,11 +71,22 @@ void Display::renderBorders()
     wattron(win, COLOR_PAIR(NORMAL_COLOR));
 }
 
-int Display::render()
+void Display::printPlayfield(t_playfield playfield)
+{
+    (void)*playfield;
+    for (int y = 1; y < PLAYGROUND_H - 1; y++) {
+        for (int x = 1; x < PLAYGROUND_W - 1; x++) {
+            mvwaddch(this->win, y, x, playfield[y][x]);
+        }
+    }
+}
+
+int Display::render(t_playfield playfield)
 {
     if (resizeHandler())
         return 1;
     renderBorders();
+    printPlayfield(playfield);
     wrefresh(this->win);
     return 0;
 }
