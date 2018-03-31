@@ -2,22 +2,24 @@
 #define __GAME__
 
 #include <iostream>
+#include <signal.h>
 #include "../display/Display.hpp"
 
 class Game
 {
-  public:
-    Game();
-    Game(const Game &g);
-    ~Game();
+public:
+  Game();
+  Game(const Game &g);
+  ~Game();
 
-    Game &operator=(const Game &g);
+  Game &operator=(const Game &g);
 
-    void play();
-  private:
-    void annonce();
+  void play();
 
-    Display *display;
+private:
+  void annonce();
+
+  Display *display;
 };
 
 #endif

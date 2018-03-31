@@ -3,6 +3,13 @@ CC = clang++
 FLAGS = -Wall -Wextra -Werror 
 SRC = main.cpp game/Game.cpp display/Display.cpp
 OBJ	= $(SRC:.cpp=.o)
+OS = $(shell uname -s)
+
+ifeq ($(OS), Linux)
+	FLAGS += -std=c++11
+else
+	FLAGS += -std=std98
+endif
 
 all: $(OBJ)
 	$(CC) -o $(NAME) $(FLAGS) $(OBJ) -lncurses
