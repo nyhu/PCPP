@@ -10,16 +10,16 @@ Enemy::Enemy(Enemy const &src)
 {
 }
 
-Enemy::~Enemy(void)
+Enemy::~Enemy()
 {
 }
 
-std::string Enemy::getType(void) const
+std::string Enemy::getType() const
 {
 	return this->type;
 }
 
-int Enemy::getHP(void) const
+int Enemy::getHP() const
 {
 	return this->hp;
 }
@@ -29,5 +29,9 @@ void Enemy::takeDamage(int damage)
 	if (damage > 0)
 	{
 		this->hp -= damage;
+	}
+	if (this->hp < 0)
+	{
+		this->hp = 0;
 	}
 }

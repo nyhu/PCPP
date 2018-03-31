@@ -32,7 +32,7 @@ int main()
 		joe.getPolymorphed();
 		ss.polymorph(joel);
 		ss.polymorph(v);
-		std::cout << joe << joey << joel << src << s;
+		std::cout << joe << joey << joel << s << v;
 	}
 	return (0);
 }

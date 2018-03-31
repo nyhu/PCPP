@@ -7,7 +7,6 @@
 
 class Character
 {
-
   private:
 	std::string name;
 	int AP;

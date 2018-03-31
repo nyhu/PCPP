@@ -8,8 +8,8 @@ class RadScorpion : public Enemy
 
   public:
 	RadScorpion(RadScorpion const &src);
-	RadScorpion(void);
-	~RadScorpion(void);
+	RadScorpion();
+	~RadScorpion();
 
 	RadScorpion &operator=(RadScorpion const &rhs);
 };

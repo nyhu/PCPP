@@ -23,13 +23,6 @@ Victim::~Victim()
 	std::cout << "Victim " << name << " just died for no apparent reason !" << std::endl;
 }
 
-Victim &Victim::operator=(Victim const &rhs)
-{
-	this->name = rhs.getName();
-
-	return *this;
-}
-
 /*
 ** Features
 */

@@ -6,6 +6,8 @@
 
 int main()
 {
+	std::cout << "42 tests" << std::endl;
+
 	Character *zaz = new Character("zaz");
 
 	std::cout << *zaz;
@@ -27,6 +29,30 @@ int main()
 	std::cout << *zaz;
 	zaz->attack(b);
 	std::cout << *zaz;
+
+	std::cout << std::endl << "personnal tests" << std::endl;
+
+	b = new SuperMutant();
+	zaz->equip(pf);
+
+	zaz->attack(b);
+	std::cout << *zaz;
+	zaz->equip(pr);
+	std::cout << *zaz;
+	zaz->attack(b);
+	std::cout << *zaz;
+	zaz->attack(b);
+	std::cout << *zaz;
+	zaz->attack(b);
+	std::cout << *zaz;
+	zaz->attack(b);
+	std::cout << *zaz;
+	
+	/* cannot bear undeleted stuff */
+	delete pr;
+	delete pf;
+	delete zaz;
+	delete b;
 
 	return 0;
 }

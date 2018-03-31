@@ -5,21 +5,20 @@
 
 class Enemy
 {
-
-  protected:
-	int hp;
-	std::string const &type;
-
   public:
 	Enemy(Enemy const &src);
 	Enemy(int hp, std::string const &type);
-	virtual ~Enemy(void);
-	std::string getType(void) const;
-	int getHP(void) const;
+	virtual ~Enemy();
+	Enemy &operator=(Enemy const &rhs);
+
+	std::string getType() const;
+	int getHP() const;
 
 	virtual void takeDamage(int damage);
 
-	Enemy &operator=(Enemy const &rhs);
+  protected:
+	int hp;
+	std::string type;
 };
 
 #endif

@@ -7,7 +7,7 @@ class Peon : public Victim
 {
 
 public:
-	Peon(void);
+	Peon();
 	Peon(std::string name);
 	Peon(Peon const &p);
 	~Peon();
