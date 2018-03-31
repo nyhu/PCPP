@@ -5,6 +5,7 @@ Display::Display()
     initscr();            // init ncurse
     cbreak();             // desactivate input buffering: one char at a time
     noecho();             // doesn't echo input characters
+    nodelay(stdscr, TRUE);// getch() return imediatly if no key is pressed
     keypad(stdscr, TRUE); // get special char like arrows and delete
 
     start_color(); // init color usage
@@ -50,14 +51,16 @@ int Display::resizeHandler()
         return 0;
     if (w.ws_row < PLAYGROUND_H || w.ws_col < PLAYGROUND_W)
         return 1;
-    wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-    wrefresh(this->win);
-    delwin(this->win);
+    wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '); // erase borders
+    wrefresh(this->win);                                  // erase win content
+    delwin(this->win);                                    // free win in memory
+
     this->maxH = w.ws_row;
     this->maxW = w.ws_col;
     this->mainWinH = (this->maxH - PLAYGROUND_H) / 2;
     this->mainWinW = (this->maxW - PLAYGROUND_W) / 2;
-    this->win = newwin(PLAYGROUND_H, PLAYGROUND_W, this->mainWinH, this->mainWinW); // init a window    
+    this->win = newwin(PLAYGROUND_H, PLAYGROUND_W, this->mainWinH, this->mainWinW);
+
     return 0;
 }
 
@@ -65,23 +68,7 @@ void Display::renderBorders()
 {
     wattron(win, COLOR_PAIR(BORDER_COLOR));
     wborder(win, '|', '|', '-', '-', '*', '*', '*', '*');
-
-    //FOR DEBUG
-    // std::string s = std::to_string(this->mainWinH);
-    // wmove(this->win, 10, 10);
-    // waddstr(this->win, s.c_str());
-    // s = std::to_string(this->mainWinW);
-    // wmove(this->win, 11, 10);
-    // waddstr(this->win, s.c_str());
-    // s = std::to_string(this->maxH);
-    // wmove(this->win, 12, 10);
-    // waddstr(this->win, s.c_str());
-    // s = std::to_string(this->maxW);
-    // wmove(this->win, 13, 10);
-    // waddstr(this->win, s.c_str());
-
     wattron(win, COLOR_PAIR(NORMAL_COLOR));
-    
 }
 
 int Display::render()

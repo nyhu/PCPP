@@ -40,7 +40,7 @@ void Game::play()
 {
     while (42)
     {
-        while (this->display->render()) {
+        while (this->display->render()) { // on error ask to resize
             std::cout << "please resize your window";
         }
     }
