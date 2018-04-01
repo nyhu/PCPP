@@ -28,14 +28,16 @@ void AShip::stop()
     this->directionX = 0;
 }
 
-void AShip::collide(AShip &player) {
+int AShip::collide(AShip &player) {
     if (this->pv >= player.pv) {
         player.pv = 0;
-        return;
+        return 0;
     }
     player.pv -= this->pv;
+
+    int mem = this->pv;
     this->pv = 0;
-    return;
+    return mem;
 }
 
 void AShip::setDirection(int x, int y)

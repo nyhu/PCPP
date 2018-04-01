@@ -87,11 +87,12 @@ void Display::printPlayfield(t_playfield playfield)
             mvwaddch(this->win, y, x, playfield[y][x]);
 }
 
-void Display::printHud(int pv, int lives)
+void Display::printHud(int pv, int lives, int score)
 {
     std::ostringstream s;
     s << "PV : " << std::right << std::setw(3) << pv << " / " << 100;
     s << "  LIVES : " << std::right << std::setw(3) << lives << " / " << 3;
+    s << "  SCORE : " << std::left << std::setw(20) << score;
 
     wattron(this->hud, COLOR_PAIR(BORDER_COLOR));
     wborder(this->hud, '|', '|', '-', '-', '*', '*', '*', '*');

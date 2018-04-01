@@ -16,7 +16,7 @@ class AShip
     virtual void move();
     void stop();
     // IBullets *attack();
-    void collide(AShip &s);
+    int collide(AShip &s);
 
     void setDirection(int x, int y);
     void setPosition(int x, int y);

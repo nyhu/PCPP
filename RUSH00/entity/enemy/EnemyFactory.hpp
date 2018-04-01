@@ -11,6 +11,8 @@ class EnemyFactory {
 
     void move();
     void computePlayfield(t_playfield &p, IShip &player);
+
+    int getScore();
     
     private:
     EnemyList *elist;
