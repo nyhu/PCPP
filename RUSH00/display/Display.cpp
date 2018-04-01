@@ -20,7 +20,7 @@ Display::Display()
     this->mainWinW = (this->maxW - PLAYGROUND_W) / 2;
     this->win = newwin(PLAYGROUND_H, PLAYGROUND_W, this->mainWinH, this->mainWinW); // init a game window
 
-    this->hud = newwin(1, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW); // init a hud window
+    this->hud = newwin(2, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW); // init a hud window
 }
 
 Display::Display(const Display &d)
@@ -68,7 +68,7 @@ int Display::resizeHandler()
     this->mainWinW = (this->maxW - PLAYGROUND_W) / 2;
     this->win = newwin(PLAYGROUND_H, PLAYGROUND_W, this->mainWinH, this->mainWinW);
 
-    this->hud = newwin(1, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW); // init a hud window
+    this->hud = newwin(2, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW); // init a hud window
 
     return 0;
 }
@@ -90,7 +90,7 @@ void Display::printPlayfield(t_playfield playfield)
 void Display::printHud(int pv, int lives, int score)
 {
     std::ostringstream s;
-    s << "PV : " << std::right << std::setw(3) << pv << " / " << 100;
+    s << "  PV : " << std::right << std::setw(3) << pv << " / " << 100;
     s << "  LIVES : " << std::right << std::setw(3) << lives << " / " << 3;
     s << "  SCORE : " << std::left << std::setw(20) << score;
 
@@ -98,7 +98,7 @@ void Display::printHud(int pv, int lives, int score)
     wborder(this->hud, '|', '|', '-', '-', '*', '*', '*', '*');
     wattron(this->hud, COLOR_PAIR(NORMAL_COLOR));
 
-    wmove(this->hud, 0, 1);
+    wmove(this->hud, 1, 2);
     waddstr(this->hud, s.str().c_str());
 
     wrefresh(this->hud);
