@@ -22,7 +22,7 @@ void EnemyFactory::move()
 
 void EnemyFactory::computePlayfield(t_playfield &p, IShip &player, BulletList &bList)
 {
-    bool enemyListAlive = false;
+    nbOfEnemy = 0;
     for (int i = 0; *this->elist > i; i++)
     {
         IShip &s = this->elist->getShip(i);
@@ -32,9 +32,9 @@ void EnemyFactory::computePlayfield(t_playfield &p, IShip &player, BulletList &b
         if (s.getPv() == 0)
             continue;
         p[s.getPosY()][s.getPosX()] = s.getOutput();
-        enemyListAlive = true;
+        nbOfEnemy++;
     }
-    if (!enemyListAlive)
+    if (!nbOfEnemy)
         this->elist->populateFighter(this->score / 10);
 }
 
@@ -52,4 +52,9 @@ void EnemyFactory::attack(BulletList &bList)
 int EnemyFactory::getScore()
 {
     return this->score;
+}
+
+int EnemyFactory::getEnemyNb()
+{
+    return nbOfEnemy;
 }

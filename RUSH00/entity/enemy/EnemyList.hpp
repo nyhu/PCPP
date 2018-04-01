@@ -15,6 +15,7 @@ class EnemyList
     void populateFighter(int nb);
 
     IShip &getShip(int i);
+    int   getNb();
     
   private:
     IShip *ships;

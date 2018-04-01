@@ -35,7 +35,7 @@ void Game::play()
         if (this->p1.getLives() == 0)
             break;
 
-        this->display.printHud(p1.getPv(), p1.getLives(), this->eFactory.getScore());
+        this->display.printHud(p1.getPv(), p1.getLives(), this->eFactory.getScore(), this->eFactory.getEnemyNb());
         while (this->display.render(this->playfield, this->bgPlayfield))
             std::cout << "please resize your window";
 

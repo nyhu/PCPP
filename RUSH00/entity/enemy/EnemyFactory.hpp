@@ -15,10 +15,12 @@ class EnemyFactory {
     void attack(BulletList &bList);
 
     int getScore();
+    int getEnemyNb();
     
     private:
     EnemyList *elist;
     int score;
+    int nbOfEnemy;
 };
 
 #endif

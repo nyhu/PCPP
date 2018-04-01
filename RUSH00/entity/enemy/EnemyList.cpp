@@ -34,12 +34,18 @@ void EnemyList::populateFighter(int nb)
         absciceModif -= 2;
     else
         absciceModif += 2;
-    for (int i = 0; *this > i; i++) {
-        this->ships[i].setPosition(x + (absciceModif * i), y);     
+    for (int i = 0; *this > i; i++)
+    {
+        this->ships[i].setPosition(x + (absciceModif * i), y);
     }
 }
 
 IShip &EnemyList::getShip(int i)
 {
     return this->ships[i];
+}
+
+int EnemyList::getNb()
+{
+    return nb;
 }
