@@ -31,7 +31,6 @@ EnemyFactory &EnemyFactory::operator=(const EnemyFactory &rhs)
     return (*this);
 }
 
-
 void EnemyFactory::move()
 {
     elist->move();

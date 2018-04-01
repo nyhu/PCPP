@@ -113,7 +113,7 @@ int EnemyList::computePlayfield(t_playfield &p, Player &p1, Player *p2, BulletLi
             IShip &s = ships[i];
             if (s.getPosX() == p1.getPosX() && s.getPosY() == p1.getPosY())
                 p1.score += s.collide(p1);
-            if (p2 && s.getPosX() == p2->getPosX() && p2->getPosY() == p2->getPosY())
+            if (p2 && s.getPosX() == p2->getPosX() && s.getPosY() == p2->getPosY())
                 p2->score += s.collide(*p2);
 
             b.collide(s); // enemy friendly fire
