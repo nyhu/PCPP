@@ -20,8 +20,8 @@ public:
   Game();
   Game(const Game &g);
   ~Game();
+  Game &operator=(const Game &g);//no sens but copliente ^^
 
-  Game &operator=(const Game &g);
 
   void menu();
   void play();

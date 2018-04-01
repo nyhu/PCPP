@@ -18,8 +18,8 @@ class Display
     Display();
     Display(const Display &d);
     ~Display();
+    Display &operator=(const Display &d);//no sens but copliente ^^
 
-    Display &operator=(const Display &d);
 
     int menu(int nbPlayer);
     int render(t_playfield playfield, t_playfield bgPlayfield);

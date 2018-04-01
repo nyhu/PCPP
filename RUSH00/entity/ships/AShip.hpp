@@ -13,6 +13,10 @@ class AShip
     AShip();
     AShip(int pv, char ouput, int posX, int posY, int directionX, int directionY);
     virtual ~AShip();
+    AShip(AShip const & src);
+    AShip &operator=(const AShip &rhs);
+
+
 
     virtual void move();
     void stop();

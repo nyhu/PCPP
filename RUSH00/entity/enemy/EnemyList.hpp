@@ -9,6 +9,9 @@ class EnemyList
   public:
     EnemyList();
     ~EnemyList();
+    EnemyList(EnemyList const & src);
+    EnemyList &operator=(EnemyList const &rhs);
+
 
     bool operator>(int nb);
 

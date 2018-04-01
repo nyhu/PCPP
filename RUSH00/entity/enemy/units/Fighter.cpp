@@ -23,6 +23,24 @@ Fighter::~Fighter()
 {
 }
 
+Fighter::Fighter(Fighter const & src)
+{
+    *this = src;
+}
+
+Fighter &Fighter::operator=(const Fighter &rhs)
+{
+    this->pv = rhs.pv ;
+    this->ouput = rhs.ouput;
+    this->posX = rhs.posX;
+    this->posY = rhs.posY;
+    this->directionX = rhs.directionY;
+    this->directionY = rhs.directionX;
+    this->frameSinceLastAttack = rhs.frameSinceLastAttack;
+    return (*this);
+}
+
+
 void Fighter::move()
 {
     if ((this->directionX || this->directionY) && this->posX > 10 && this->posY > 10)

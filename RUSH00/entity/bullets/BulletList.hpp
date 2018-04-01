@@ -12,6 +12,8 @@ class BulletList
 public:
   BulletList();
   ~BulletList();
+  BulletList(BulletList const & src);
+  BulletList &operator=(const BulletList &rhs);
 
   void pushBullet(AShip *s);
   void moveBullets();

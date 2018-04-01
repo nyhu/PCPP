@@ -11,6 +11,20 @@ EnemyFactory::~EnemyFactory()
     delete this->elist;
 }
 
+EnemyFactory::EnemyFactory(EnemyFactory const & src)
+{
+    *this = src;
+}
+
+EnemyFactory &EnemyFactory::operator=(const EnemyFactory &rhs)
+{
+    this->elist = rhs.elist;
+    this->nbOfEnemy = rhs.nbOfEnemy;
+    this->bullets = rhs.bullets;
+    return (*this);
+}
+
+
 void EnemyFactory::move()
 {
     for (int i = 0; *this->elist > i; i++)

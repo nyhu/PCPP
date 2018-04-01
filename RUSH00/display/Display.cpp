@@ -45,6 +45,8 @@ Display &Display::operator=(const Display &d)
     this->maxW = d.maxW;
     this->mainWinH = d.mainWinH;
     this->mainWinW = d.mainWinW;
+    this->hud = d.hud;
+    this->hudP2 = d.hudP2;
     return *this;
 }
 

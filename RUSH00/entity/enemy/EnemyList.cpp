@@ -11,6 +11,18 @@ EnemyList::~EnemyList()
     if (this->ships)
         delete[] this->ships;
 }
+EnemyList::EnemyList(EnemyList const & src)
+{
+    *this = src;   
+}
+EnemyList &EnemyList::operator=(EnemyList const &rhs)
+{
+    this->ships = rhs.ships;
+    this->nb = rhs.nb;
+    return (*this);
+
+}
+
 
 bool EnemyList::operator>(int nb)
 {

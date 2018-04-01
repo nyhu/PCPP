@@ -18,6 +18,24 @@ Player::~Player()
 {
 }
 
+Player::Player(const Player &p)
+{
+      *this = p;
+}
+
+Player &Player::operator=(const Player &rhs)
+{
+    this->lives = rhs.lives;
+    this->pv = rhs.pv ;
+    this->ouput = rhs.ouput;
+    this->posX = rhs.posX;
+    this->posY = rhs.posY;
+    this->directionX = rhs.directionY;
+    this->directionY = rhs.directionX;
+    this->frameSinceLastAttack = rhs.frameSinceLastAttack;
+    return(*this);
+}
+
 bool Player::control(int input)
 {
     switch (input)

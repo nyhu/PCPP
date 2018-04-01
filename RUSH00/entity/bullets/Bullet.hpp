@@ -6,7 +6,7 @@
 /*   By: no <no@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 23:42:42 by nboulaye          #+#    #+#             */
-/*   Updated: 2018/04/01 15:39:41 by no               ###   ########.fr       */
+/*   Updated: 2018/04/01 16:52:05 by no               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ class Bullet : public AShip
 		virtual void respawn();
 
 
-		Bullet &							operator=( Bullet const & rhs );
+		Bullet &	operator=( Bullet const & rhs );
 	
 };
-// std::ostream & operator<<(std::ostream & o, Bullet const & rhs);
 
 #endif

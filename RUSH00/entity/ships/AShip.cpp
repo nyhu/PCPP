@@ -9,6 +9,23 @@ AShip::AShip(int pv, char ouput, int posX, int posY, int directionX, int directi
 {
 }
 
+AShip::AShip(AShip const & src)
+{
+    *this = src;
+}
+
+AShip &AShip::operator=(const AShip &rhs)
+{
+    this->pv = rhs.pv;
+    this->ouput = rhs.ouput;
+    this->posX = rhs.posX;
+    this->posY = rhs.posY;
+    this->directionX = rhs.directionY;
+    this->directionY = rhs.directionX;
+    this->frameSinceLastAttack = rhs.frameSinceLastAttack;
+    return (*this);
+}
+
 AShip::~AShip()
 {
 }

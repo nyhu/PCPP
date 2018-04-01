@@ -17,7 +17,7 @@ Game::~Game()
 
 // WARNING each display reference the same ncurse windows.
 // Avoid this usage as it's not necessary to run the game.
-Game &Game::operator=(const Game &g)
+Game &Game::operator=(const Game &g) 
 {
     this->display = g.display;
     return *this;

@@ -6,7 +6,7 @@
 /*   By: no <no@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 23:42:42 by nboulaye          #+#    #+#             */
-/*   Updated: 2018/04/01 11:01:41 by no               ###   ########.fr       */
+/*   Updated: 2018/04/01 17:33:43 by no               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ background::background ( background const & src )
 	return ;
 }
 
-background &				background::operator=( background const & rhs )
+background &	background::operator=( background const & rhs )
 {
-	if (this != &rhs)
-	{
-	}
+	this->nb_star = rhs.nb_star;
+	this->star = rhs.star;
 	return (*this);
 }
 

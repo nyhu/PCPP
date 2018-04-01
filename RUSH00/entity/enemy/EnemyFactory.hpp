@@ -11,6 +11,8 @@ class EnemyFactory
   public:
     EnemyFactory();
     ~EnemyFactory();
+    EnemyFactory(EnemyFactory const & src);
+    EnemyFactory &operator=(const EnemyFactory &rhs);    
 
     void move();
     void computePlayfield(t_playfield &p, Player &p1, Player *p2);

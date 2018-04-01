@@ -18,6 +18,17 @@ BulletList::~BulletList()
     }
     delete this->bullets;
 }
+BulletList &BulletList::operator=(const BulletList &rhs)
+{
+    this->bullets = rhs.bullets;
+    return (*this);
+}
+
+BulletList::BulletList(BulletList const & src)
+{
+    *this = src;
+}
+
 
 void BulletList::pushBullet(AShip *b)
 {

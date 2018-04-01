@@ -12,6 +12,7 @@ class Player : public IShip
     Player(int x, int y);
     Player(const Player &p);
     ~Player();
+    Player &operator=(const Player &rhs);
 
     bool control(int input);
     bool controlP2(int input);
