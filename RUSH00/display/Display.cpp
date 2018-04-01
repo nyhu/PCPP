@@ -84,13 +84,13 @@ void Display::renderBorders()
 
 void Display::printBgPlayfield(t_playfield playfield)
 {
-    wattron(this->hud, COLOR_PAIR(BACKGROUND_COLOR));
+    wattron(this->win, COLOR_PAIR(BACKGROUND_COLOR));
 
     for (int y = 1; y < PLAYGROUND_H - 1; y++)
         for (int x = 1; x < PLAYGROUND_W - 1; x++)
             mvwaddch(this->win, y, x, playfield[y][x]);
 
-    wattron(this->hud, COLOR_PAIR(NORMAL_COLOR));
+    wattron(this->win, COLOR_PAIR(NORMAL_COLOR));
 }
 
 void Display::printPlayfield(t_playfield playfield)
