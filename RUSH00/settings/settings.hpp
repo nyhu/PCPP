@@ -12,6 +12,8 @@
 
 #define FRAME_CLOCK 50000
 
+#define BULLETS_MAX_NUMBER 5000
+
 typedef char t_playfield[PLAYGROUND_H][PLAYGROUND_W] ;
 
 #endif

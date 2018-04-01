@@ -21,6 +21,7 @@ class AShip
 
     void setDirection(int x, int y);
     void setPosition(int x, int y);
+    bool touchBorder();
     int getPosX();
     int getPosY();
     char getOutput();
@@ -34,6 +35,7 @@ class AShip
     int posY;
     short directionX;
     short directionY;
+    short frameSinceLastAttack;
 };
 
 #endif

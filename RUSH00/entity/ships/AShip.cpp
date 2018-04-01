@@ -1,11 +1,11 @@
 #include "AShip.hpp"
 
-AShip::AShip() : pv(100), ouput('0'), posX(0), posY(0), directionX(0), directionY(0)
+AShip::AShip() : pv(100), ouput('0'), posX(0), posY(0), directionX(0), directionY(0), frameSinceLastAttack(0)
 {
 }
 
 AShip::AShip(int pv, char ouput, int posX, int posY, int directionX, int directionY)
-    : pv(pv), ouput(ouput), posX(posX), posY(posY), directionX(directionX), directionY(directionY)
+    : pv(pv), ouput(ouput), posX(posX), posY(posY), directionX(directionX), directionY(directionY), frameSinceLastAttack(0)
 {
 }
 
@@ -58,6 +58,14 @@ void AShip::setPosition(int x, int y)
 {
     this->posX = x;
     this->posY = y;
+}
+
+bool AShip::touchBorder() {
+    if (this->posX == 1 || this->posY == 1)
+        return true;
+    if (this->posX == PLAYGROUND_W - 2 || this->posY == PLAYGROUND_W - 2)
+        return true;
+    return false;
 }
 
 int AShip::getPosX()

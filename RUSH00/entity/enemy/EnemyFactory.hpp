@@ -12,6 +12,7 @@ class EnemyFactory {
 
     void move();
     void computePlayfield(t_playfield &p, IShip &player, BulletList& bList);
+    void attack(BulletList &bList);
 
     int getScore();
     

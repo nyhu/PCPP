@@ -25,7 +25,8 @@ Fighter::~Fighter()
 
 void Fighter::move()
 {
-    if ((this->directionX || this->directionY) && this->posX > 10 && this->posY > 10) {
+    if ((this->directionX || this->directionY) && this->posX > 10 && this->posY > 10)
+    {
         int sixDice = rand() % 6;
         if (sixDice > 4)
             stop();
@@ -35,5 +36,11 @@ void Fighter::move()
 
 AShip *Fighter::attack()
 {
+    if (frameSinceLastAttack > 12)
+    {
+        frameSinceLastAttack = 0;
+        return new AShip(1, '-', this->posX - 1, this->posY, -1, 0);
+    }
+    ++frameSinceLastAttack;
     return NULL;
 }

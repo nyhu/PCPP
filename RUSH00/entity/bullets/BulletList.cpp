@@ -2,56 +2,79 @@
 
 BulletList::BulletList()
 {
+    this->bullets = new AShip*[BULLETS_MAX_NUMBER + 1];
+    for (int i = 0; i < BULLETS_MAX_NUMBER; i++)
+        this->bullets[i] = NULL;
 }
 
 BulletList::~BulletList()
 {
-    for (std::map<std::string, AShip *>::iterator it = this->bullets.begin(); it != this->bullets.end(); ++it)
+    for (int i = 0; i < BULLETS_MAX_NUMBER; i++)
     {
-        AShip *b = it->second;
-        this->bullets.erase(it);
-        delete b;
+        if (!this->bullets[i])
+            continue;
+        delete this->bullets[i];
+        this->bullets[i] = NULL;
     }
+    delete this->bullets;
 }
 
-void BulletList::pushBullet(std::string origin, AShip *b)
+void BulletList::pushBullet(AShip *b)
 {
     if (b == NULL)
         return;
-    std::time_t t = std::time(0);
-    std::ostringstream s;
-    s << origin << t;
-    if (this->bullets.count(s.str()) > 0)
+    for (int i = 0; i < BULLETS_MAX_NUMBER; i++)
     {
-        delete b;
-        return;
+        if (!this->bullets[i])
+        {
+            this->bullets[i] = b;
+            return;
+        }
+        if (this->bullets[i]->touchBorder())
+        {
+            delete this->bullets[i];
+            this->bullets[i] = b;
+            return;
+        }
     }
-    this->bullets.insert(std::make_pair(s.str(), b));
+    delete b;
 }
 
 void BulletList::moveBullets()
 {
-    for (std::map<std::string, AShip *>::iterator it = this->bullets.begin(); it != this->bullets.end(); ++it)
-        it->second->move();
+    for (int i = 0; i < BULLETS_MAX_NUMBER; i++)
+    {
+        if (!this->bullets[i])
+            continue;
+        if (this->bullets[i]->touchBorder())
+        {
+            delete this->bullets[i];
+            this->bullets[i] = NULL;
+            continue;
+        }
+        this->bullets[i]->move();
+    }
 }
 
 int BulletList::collide(IShip &s)
 {
-    for (std::map<std::string, AShip *>::iterator it = this->bullets.begin(); it != this->bullets.end(); ++it)
-        if (it->second->getPosX() == s.getPosX() && it->second->getPosY() == s.getPosY())
+    for (int i = 0; i < BULLETS_MAX_NUMBER; i++)
+        if (this->bullets[i] && this->bullets[i]->getPosX() == s.getPosX() && this->bullets[i]->getPosY() == s.getPosY())
         {
-            if (it->second->getPv() == 0)
+            if (this->bullets[i]->getPv() == 0)
             {
-                delete it->second;
-                this->bullets.erase(it);
+                delete this->bullets[i];
+                this->bullets[i] = NULL;
+                return 0;
             }
-            return s.collide(*it->second);
+            return s.collide(*this->bullets[i]);
         }
     return 0;
 }
 
 void BulletList::computePlayfield(t_playfield &playfield)
 {
-    for (std::map<std::string, AShip *>::iterator it = this->bullets.begin(); it != this->bullets.end(); ++it)
-        playfield[it->second->getPosY()][it->second->getPosX()] = it->second->getOutput();
+    for (int i = 0; i < BULLETS_MAX_NUMBER; i++)
+        if (this->bullets[i])
+            playfield[this->bullets[i]->getPosY()][this->bullets[i]->getPosX()] = this->bullets[i]->getOutput();
 }
