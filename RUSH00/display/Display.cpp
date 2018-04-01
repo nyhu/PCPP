@@ -138,7 +138,7 @@ std::ostringstream Display::hudInfosToStr(int pv, int lives, int score, int enem
 
 void Display::printHud(int pv, int lives, int score, int enemyNb)
 {
-    std::ostringstream s = hudInfosToStr(pv, lives, score, enemyNb);
+    std::ostringstream s = this->hudInfosToStr(pv, lives, score, enemyNb);
 
     wattron(this->hud, COLOR_PAIR(BORDER_COLOR));
     wborder(this->hud, '|', '|', '-', '-', '*', '*', '*', '*');
@@ -152,7 +152,7 @@ void Display::printHud(int pv, int lives, int score, int enemyNb)
 
 void Display::printHudP2(int pv, int lives, int score, int enemyNb)
 {
-    std::ostringstream s = hudInfosToStr(pv, lives, score, enemyNb);
+    std::ostringstream s = this->hudInfosToStr(pv, lives, score, enemyNb);
 
     wattron(this->hudP2, COLOR_PAIR(BORDER_COLOR));
     wborder(this->hudP2, '|', '|', '-', '-', '*', '*', '*', '*');
