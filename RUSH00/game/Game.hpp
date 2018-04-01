@@ -25,6 +25,7 @@ public:
 
   void menu();
   void play();
+  void score();
 
 private:
   bool takeInputUntilNextFrame(clock_t x_startTime);

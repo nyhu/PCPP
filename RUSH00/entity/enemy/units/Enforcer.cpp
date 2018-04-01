@@ -2,7 +2,7 @@
 
 Enforcer::Enforcer()
 {
-    this->pv = 200;
+    this->pv = 40;
     this->ouput = '@';
 
     srand(time(0));

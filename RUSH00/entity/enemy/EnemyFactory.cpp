@@ -6,12 +6,16 @@ EnemyFactory::EnemyFactory()
     this->flist->populateFighter(5);
 
     this->elist = new EnemyList;
+    this->mlist = new EnemyList;
+
+    this->startTime = clock();
 }
 
 EnemyFactory::~EnemyFactory()
 {
     delete this->flist;
     delete this->elist;
+    delete this->mlist;
 }
 
 EnemyFactory::EnemyFactory(EnemyFactory const & src)
@@ -32,6 +36,7 @@ void EnemyFactory::move()
 {
     elist->move();
     flist->move();
+    mlist->move();
     bullets.moveBullets();
 }
 
@@ -42,52 +47,16 @@ void EnemyFactory::collide(Player &p)
 
 void EnemyFactory::computePlayfield(t_playfield &p, Player &p1, Player *p2)
 {
-    nbOfEnemy = 0;
-    for (int i = 0; *this->flist > i; i++)
+    this->nbOfEnemy = elist->computePlayfield(p, p1, p2, bullets);
+    this->nbOfEnemy += flist->computePlayfield(p, p1, p2, bullets);
+    this->nbOfEnemy += mlist->computePlayfield(p, p1, p2, bullets);
+
+    clock_t now = clock();
+    if (this->nbOfEnemy <= ((now - this->startTime ) / 100000000))
     {
-        IShip &s = this->flist->getShip(i);
-
-        if (s.getPosX() == p1.getPosX() && s.getPosY() == p1.getPosY())
-            p1.score += s.collide(p1);
-        if (p2 && s.getPosX() == p2->getPosX() && p2->getPosY() == p2->getPosY())
-            p2->score += s.collide(*p2);
-
-        bullets.collide(s); // enemy friendly fire
-        p1.score += p1.bullets.collide(s);
-        if (p2)
-            p2->score += p2->bullets.collide(s);
-
-        if (s.getPv() == 0)
-            continue;
-
-        p[s.getPosY()][s.getPosX()] = s.getOutput();
-        nbOfEnemy++;
-    }
-    for (int i = 0; *this->elist > i; i++)
-    {
-        IShip &s = this->elist->getShip(i);
-
-        if (s.getPosX() == p1.getPosX() && s.getPosY() == p1.getPosY())
-            p1.score += s.collide(p1);
-        if (p2 && s.getPosX() == p2->getPosX() && p2->getPosY() == p2->getPosY())
-            p2->score += s.collide(*p2);
-
-        bullets.collide(s); // enemy friendly fire
-        p1.score += p1.bullets.collide(s);
-        if (p2)
-            p2->score += p2->bullets.collide(s);
-
-        if (s.getPv() == 0)
-            continue;
-
-        p[s.getPosY()][s.getPosX()] = s.getOutput();
-        nbOfEnemy++;
-    }
-
-    if (nbOfEnemy < 1)
-    {
-        this->flist->populateFighter(p1.score / 100 + p1.score % 7 + 5);
-        this->elist->populateEnforcer(p1.score / 10000 + 1);
+        this->flist->populateFighter(p1.score / 100 + p1.score % 5 + 5);
+        this->elist->populateEnforcer(p1.score / 250 + 1);
+        this->elist->populateMegatrope(p1.score / 500);
     }
 
     // Bullets are added last for better display
@@ -96,23 +65,13 @@ void EnemyFactory::computePlayfield(t_playfield &p, Player &p1, Player *p2)
 
 void EnemyFactory::attack()
 {
-    for (int i = 0; *this->flist > i; i++)
-    {
-        IShip &s = this->flist->getShip(i);
-        if (s.getPv() == 0)
-            continue;
-        s.attack(bullets);
-    }
-    for (int i = 0; *this->elist > i; i++)
-    {
-        IShip &s = this->elist->getShip(i);
-        if (s.getPv() == 0)
-            continue;
-        s.attack(bullets);
-    }
+    elist->attack(bullets);
+    flist->attack(bullets);
+    mlist->attack(bullets);
 }
 
 int EnemyFactory::getEnemyNb()
 {
-    return nbOfEnemy - 1;
+    clock_t now = clock();    
+    return nbOfEnemy - ((now - this->startTime ) / 100000000);
 }
