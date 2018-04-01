@@ -4,6 +4,7 @@
 #include "../ships/IShip.hpp"
 #include "units/Fighter.hpp"
 #include "units/Enforcer.hpp"
+#include "units/Megatrope.hpp"
 #include "../player/Player.hpp"
 
 class EnemyList
@@ -16,6 +17,7 @@ class EnemyList
 
     void populateFighter(int nb);
     void populateEnforcer(int nb);
+    void populateMegatrope(int nb);
 
     void move();
     void attack(BulletList &b);

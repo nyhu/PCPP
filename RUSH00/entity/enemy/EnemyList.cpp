@@ -1,9 +1,9 @@
 #include "EnemyList.hpp"
 
-EnemyList::EnemyList() : nb(0)
+EnemyList::EnemyList()
 {
-    // this->ships = nullptr;
     this->ships = NULL;
+    this->nb = 0;
 }
 
 EnemyList::~EnemyList()
@@ -23,8 +23,8 @@ void EnemyList::populateFighter(int nb)
         return;
     if (this->ships)
         delete[] this->ships;
-    this->ships = new Fighter[nb];
     this->nb = nb;
+    this->ships = new Fighter[nb];
     if (nb == 1)
         return;
     int x = this->ships[0].getPosX();
@@ -44,8 +44,8 @@ void EnemyList::populateEnforcer(int nb)
         return;
     if (this->ships)
         delete[] this->ships;
-    this->ships = new Enforcer[nb];
     this->nb = nb;
+    this->ships = new Enforcer[nb];
     if (nb == 1)
         return;
     int x = this->ships[0].getPosX();
@@ -59,10 +59,30 @@ void EnemyList::populateEnforcer(int nb)
         this->ships[i].setPosition(x, y + (absciceModif * i));
 }
 
+void EnemyList::populateMegatrope(int nb)
+{
+    if (nb <= 0)
+        return;
+    if (this->ships)
+        delete[] this->ships;
+    this->nb = (nb / 4 + 1) * 4;
+    this->ships = new Megatrope[this->nb];
+    int x = this->ships[0].getPosX();
+    int y = this->ships[0].getPosY();
+    for (int i = 0; *this > i; i++)
+    {
+        if (i % 2)
+            this->ships[i].setPosition(x, y + (1 * i / 2));
+        else
+            this->ships[i].setPosition(x + (1 * i / 2), y);
+    }
+}
+
 void EnemyList::move()
 {
     for (int i = 0; *this > i; i++)
-        ships[i].move();
+        if (this->ships[i].getPv() != 0)
+            ships[i].move();
 }
 
 void EnemyList::attack(BulletList &b)
@@ -76,24 +96,25 @@ int EnemyList::computePlayfield(t_playfield &p, Player &p1, Player *p2, BulletLi
 {
     int nbOfEnemy = 0;
     for (int i = 0; *this > i; i++)
-    {
-        IShip &s = ships[i];
-        if (s.getPosX() == p1.getPosX() && s.getPosY() == p1.getPosY())
-            p1.score += s.collide(p1);
-        if (p2 && s.getPosX() == p2->getPosX() && p2->getPosY() == p2->getPosY())
-            p2->score += s.collide(*p2);
+        if (ships[i].getPv() != 0)
+        {
+            IShip &s = ships[i];
+            if (s.getPosX() == p1.getPosX() && s.getPosY() == p1.getPosY())
+                p1.score += s.collide(p1);
+            if (p2 && s.getPosX() == p2->getPosX() && p2->getPosY() == p2->getPosY())
+                p2->score += s.collide(*p2);
 
-        b.collide(s); // enemy friendly fire
-        p1.score += p1.bullets.collide(s);
-        if (p2)
-            p2->score += p2->bullets.collide(s);
+            b.collide(s); // enemy friendly fire
+            p1.score += p1.bullets.collide(s);
+            if (p2)
+                p2->score += p2->bullets.collide(s);
 
-        if (s.getPv() == 0)
-            continue;
+            if (s.getPv() == 0)
+                continue;
 
-        p[s.getPosY()][s.getPosX()] = s.getOutput();
-        nbOfEnemy++;
-    }
+            p[s.getPosY()][s.getPosX()] = s.getOutput();
+            nbOfEnemy++;
+        }
     return nbOfEnemy;
 }
 

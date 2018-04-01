@@ -11,7 +11,8 @@ SRC = main.cpp \
 	entity/enemy/EnemyList.cpp \
 	entity/bullets/BulletList.cpp \
 	entity/enemy/units/Fighter.cpp \
-	entity/enemy/units/Enforcer.cpp
+	entity/enemy/units/Enforcer.cpp \
+	entity/enemy/units/Megatrope.cpp
 	
 OBJ	= $(SRC:.cpp=.o)
 OS = $(shell uname -s)

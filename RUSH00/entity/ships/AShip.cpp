@@ -19,12 +19,12 @@ void AShip::move()
     this->posY += this->directionY;
     if (this->posX < 1)
         this->posX = 1;
-    if (this->posX > (PLAYGROUND_W - 2))
-        this->posX = PLAYGROUND_W - 2;
+    if (this->posX > MAX_W)
+        this->posX = MAX_W;
     if (this->posY < 1)
         this->posY = 1;
-    if (this->posY > (PLAYGROUND_H - 2))
-        this->posY = PLAYGROUND_H - 2;
+    if (this->posY > MAX_H)
+        this->posY = MAX_H;
     if (this->touchBorder())
         respawn();
 }

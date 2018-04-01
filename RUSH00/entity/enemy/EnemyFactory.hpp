@@ -20,8 +20,11 @@ class EnemyFactory
     int getEnemyNb();
 
   private:
+    clock_t startTime;
+
     EnemyList *flist;
     EnemyList *elist;
+    EnemyList *mlist;
     int nbOfEnemy;
     BulletList bullets;
 };

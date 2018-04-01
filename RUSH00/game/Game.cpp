@@ -88,7 +88,8 @@ bool Game::takeInputUntilNextFrame(clock_t x_startTime)
     while (time_left > 0)
     {
         int input = 0;
-        while ((input = getch()) != ERR) {
+        while ((input = getch()) != ERR)
+        {
             if (this->p1.control(input))
                 return true;
             if (p2 && this->p2->controlP2(input))
@@ -136,5 +137,20 @@ void Game::computePlayfield()
     p1.bullets.computePlayfield(playfP1);
     if (p2)
         p2->bullets.computePlayfield(playfP2);
+}
 
+void Game::score()
+{
+    while (42)
+    {
+        this->display.printHud(p1.getPv(), p1.getLives(), p1.score, this->eFactory.getEnemyNb());
+        if (p2)
+            this->display.printHudP2(p2->getPv(), p2->getLives(), p2->score, this->eFactory.getEnemyNb());
+        while (this->display.render(playfield, bgPlayfield, playfP1, playfP2))
+            std::cout << "please resize your window";
+                int input = 0;
+        while ((input = getch()) != ERR)
+            if (input == 10)
+                return;
+    }
 }
