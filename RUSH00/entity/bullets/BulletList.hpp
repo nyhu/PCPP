@@ -16,6 +16,7 @@ public:
   ~BulletList();
 
   void pushBullet(std::string origin, AShip *s);
+  void pushBullet(std::string origin, int enemyIndex, AShip *s);
   void moveBullets();
   int collide(IShip &s);
   void computePlayfield(t_playfield &playfield);

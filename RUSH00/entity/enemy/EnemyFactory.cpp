@@ -19,7 +19,7 @@ void EnemyFactory::move()
     }
 }
 
-void EnemyFactory::computePlayfield(t_playfield &p, IShip &player, BulletList& bList)
+void EnemyFactory::computePlayfield(t_playfield &p, IShip &player, BulletList &bList)
 {
     bool enemyListAlive = false;
     for (int i = 0; *this->elist > i; i++)
@@ -35,6 +35,17 @@ void EnemyFactory::computePlayfield(t_playfield &p, IShip &player, BulletList& b
     }
     if (!enemyListAlive)
         this->elist->populateFighter(this->score / 10);
+}
+
+void EnemyFactory::attack(BulletList &bList)
+{
+    for (int i = 0; *this->elist > i; i++)
+    {
+        IShip &s = this->elist->getShip(i);
+        if (s.getPv() == 0)
+            continue;
+        bList.pushBullet("elist", i, s.attack());
+    }   
 }
 
 int EnemyFactory::getScore()

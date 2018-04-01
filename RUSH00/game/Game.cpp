@@ -72,11 +72,13 @@ void Game::computeMoves()
 void Game::computeAttacks()
 {
     this->bullets.pushBullet("p1", this->p1.attack());
+    this->eFactory.attack(this->bullets);
 }
 
 void Game::computePlayfield()
 {
     std::memset(this->playfield, ' ', PLAYGROUND_H * PLAYGROUND_W);
+    this->bullets.collide(this->p1);
     this->playfield[this->p1.getPosY()][this->p1.getPosX()] = this->p1.getOutput();
     this->eFactory.computePlayfield(this->playfield, this->p1, this->bullets);
     this->bullets.computePlayfield(this->playfield);

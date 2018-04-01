@@ -35,5 +35,5 @@ void Fighter::move()
 
 AShip *Fighter::attack()
 {
-    return NULL;
+    return new AShip(1, '-', this->posX - 1, this->posY, -1, 0);
 }

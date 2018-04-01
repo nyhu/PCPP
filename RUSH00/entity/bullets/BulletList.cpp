@@ -29,6 +29,21 @@ void BulletList::pushBullet(std::string origin, AShip *b)
     this->bullets.insert(std::make_pair(s.str(), b));
 }
 
+void BulletList::pushBullet(std::string origin, int enemyIndex, AShip *b)
+{
+    if (b == NULL)
+        return;
+    std::time_t t = std::time(0);
+    std::ostringstream s;
+    s << origin << enemyIndex << t;
+    if (this->bullets.count(s.str()) > 0)
+    {
+        delete b;
+        return;
+    }
+    this->bullets.insert(std::make_pair(s.str(), b));
+}
+
 void BulletList::moveBullets()
 {
     for (std::map<std::string, AShip *>::iterator it = this->bullets.begin(); it != this->bullets.end(); ++it)
