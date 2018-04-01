@@ -1,9 +1,9 @@
 #include "EnemyFactory.hpp"
 
-EnemyFactory::EnemyFactory() : score(0)
+EnemyFactory::EnemyFactory()
 {
     this->elist = new EnemyList;
-    this->elist->populateFighter(10);
+    this->elist->populateFighter(5);
 }
 
 EnemyFactory::~EnemyFactory()
@@ -18,9 +18,15 @@ void EnemyFactory::move()
         IShip &s = this->elist->getShip(i);
         s.move();
     }
+    bullets.moveBullets();
 }
 
-void EnemyFactory::computePlayfield(t_playfield &p, IShip &p1, IShip *p2, BulletList &bList)
+void EnemyFactory::collide(Player &p)
+{
+    bullets.collide(p);
+}
+
+void EnemyFactory::computePlayfield(t_playfield &p, Player &p1, Player *p2)
 {
     nbOfEnemy = 0;
     for (int i = 0; *this->elist > i; i++)
@@ -28,11 +34,14 @@ void EnemyFactory::computePlayfield(t_playfield &p, IShip &p1, IShip *p2, Bullet
         IShip &s = this->elist->getShip(i);
 
         if (s.getPosX() == p1.getPosX() && s.getPosY() == p1.getPosY())
-            this->score += s.collide(p1);
+            p1.score += s.collide(p1);
         if (p2 && s.getPosX() == p2->getPosX() && p2->getPosY() == p2->getPosY())
-            this->score += s.collide(*p2);
+            p2->score += s.collide(*p2);
 
-        this->score += bList.collide(s);
+        bullets.collide(s); // enemy friendly fire
+        p1.score += p1.bullets.collide(s);
+        if (p2)
+            p2->score += p2->bullets.collide(s);
 
         if (s.getPv() == 0)
             continue;
@@ -41,23 +50,24 @@ void EnemyFactory::computePlayfield(t_playfield &p, IShip &p1, IShip *p2, Bullet
         nbOfEnemy++;
     }
     if (!nbOfEnemy)
-        this->elist->populateFighter(this->score / 10);
+        this->elist->populateFighter(p1.score / 20 + p1.score % 7 + 5);
+    
+    // Bullets are added last for better display
+    bullets.computePlayfield(p);
+    p1.bullets.computePlayfield(p);
+    if (p2)
+        p2->bullets.computePlayfield(p);
 }
 
-void EnemyFactory::attack(BulletList &bList)
+void EnemyFactory::attack()
 {
     for (int i = 0; *this->elist > i; i++)
     {
         IShip &s = this->elist->getShip(i);
         if (s.getPv() == 0)
             continue;
-        bList.pushBullet(s.attack());
+        bullets.pushBullet(s.attack());
     }
-}
-
-int EnemyFactory::getScore()
-{
-    return this->score;
 }
 
 int EnemyFactory::getEnemyNb()

@@ -42,7 +42,7 @@ void Game::menu()
                 break;
             case 10:
                 if (twoPlayer)
-                    p2 = new Player();
+                    p2 = new Player(30, MAX_H - 20);
                 return;
             }
     }
@@ -62,7 +62,9 @@ void Game::play()
         if (this->p1.getLives() == 0)
             break;
 
-        this->display.printHud(p1.getPv(), p1.getLives(), this->eFactory.getScore(), this->eFactory.getEnemyNb());
+        this->display.printHud(p1.getPv(), p1.getLives(), p1.score, this->eFactory.getEnemyNb());
+        if (p2)
+            this->display.printHudP2(p2->getPv(), p2->getLives(), p2->score, this->eFactory.getEnemyNb());
         while (this->display.render(this->playfield, this->bgPlayfield))
             std::cout << "please resize your window";
 
@@ -102,16 +104,15 @@ void Game::computeMoves()
     this->p1.move();
     if (p2)
         p2->move();
-    this->bullets.moveBullets();
     this->eFactory.move();
 }
 
 void Game::computeAttacks()
 {
-    this->bullets.pushBullet(this->p1.attack());
+    p1.bullets.pushBullet(p1.attack());
     if (p2)
-        this->bullets.pushBullet(this->p2->attack());
-    this->eFactory.attack(this->bullets);
+        p2->bullets.pushBullet(p2->attack());
+    eFactory.attack();
 }
 
 void Game::computePlayfield()
@@ -120,13 +121,12 @@ void Game::computePlayfield()
     std::memset(this->bgPlayfield, ' ', PLAYGROUND_H * PLAYGROUND_W);
 
     this->bg.computePlayfield(this->bgPlayfield);
-    this->bullets.collide(this->p1);
+    eFactory.collide(this->p1);
     this->playfield[this->p1.getPosY()][this->p1.getPosX()] = this->p1.getOutput();
     if (p2)
     {
-        this->bullets.collide(*this->p2);
+        eFactory.collide(*this->p2);
         this->playfield[this->p2->getPosY()][this->p2->getPosX()] = this->p2->getOutput();
     }
-    this->eFactory.computePlayfield(this->playfield, this->p1, this->p2, this->bullets);
-    this->bullets.computePlayfield(this->playfield);
+    this->eFactory.computePlayfield(this->playfield, this->p1, this->p2);
 }

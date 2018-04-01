@@ -1,10 +1,17 @@
 #include "Player.hpp"
 
-Player::Player() : lives(3)
+Player::Player() : score(0), lives(3)
 {
     this->ouput = '>';
-    this->posX = 5;
-    this->posY = 30;
+    this->posX = 30;
+    this->posY = 20;
+}
+
+Player::Player(int x, int y) : score(0), lives(3)
+{
+    this->ouput = '>';
+    this->posX = x;
+    this->posY = y;
 }
 
 Player::~Player()
@@ -68,6 +75,12 @@ void Player::die()
 int Player::getLives()
 {
     return this->lives;
+}
+
+void Player::move()
+{
+    AShip::move();
+    bullets.moveBullets();
 }
 
 AShip *Player::attack()

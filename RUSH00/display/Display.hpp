@@ -24,11 +24,13 @@ class Display
     int menu(int nbPlayer);
     int render(t_playfield playfield, t_playfield bgPlayfield);
     void printHud(int pv, int lives, int score, int enemyNb);
+    void printHudP2(int pv, int lives, int score, int enemyNb);
   private:
     int resizeHandler();
-    void renderBorders();
+    void renderBorders(WINDOW *w, int color);
     void printBgPlayfield(t_playfield playfield);
     void printPlayfield(t_playfield playfield);
+    // std::stringstream hudInfosToStr(int pv, int lives, int score, int enemyNb);
 
     WINDOW *win;
     int maxH;
@@ -37,6 +39,7 @@ class Display
     int mainWinW;
 
     WINDOW *hud;
+    WINDOW *hudP2;
 };
 
 #endif
