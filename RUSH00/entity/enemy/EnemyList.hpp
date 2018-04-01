@@ -12,7 +12,6 @@ class EnemyList
 
     bool operator>(int nb);
 
-    void move();
     void populateFighter(int nb);
 
     IShip &getShip(int i);

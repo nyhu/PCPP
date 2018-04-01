@@ -34,6 +34,12 @@ void AShip::setDirection(int x, int y)
     this->directionY = y;
 }
 
+void AShip::setPosition(int x, int y)
+{
+    this->posX = x;
+    this->posY = y;
+}
+
 int AShip::getPosX()
 {
     return this->posX;

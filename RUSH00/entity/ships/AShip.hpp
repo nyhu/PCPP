@@ -18,6 +18,7 @@ class AShip
     // IBullets *attack();
 
     void setDirection(int x, int y);
+    void setPosition(int x, int y);
     int getPosX();
     int getPosY();
     char getOutput();

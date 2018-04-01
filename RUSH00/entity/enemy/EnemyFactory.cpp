@@ -3,7 +3,7 @@
 EnemyFactory::EnemyFactory() : score(0)
 {
     this->elist = new EnemyList;
-    this->elist->populateFighter(3);
+    this->elist->populateFighter(10);
     this->score++; // cause unused at the moment
 }
 
@@ -13,7 +13,10 @@ EnemyFactory::~EnemyFactory()
 
 void EnemyFactory::move()
 {
-    this->elist->move();
+    for (int i = 0; *this->elist > i; i++) {
+        IShip &s = this->elist->getShip(i);
+        s.move();
+    }
 }
 
 void EnemyFactory::computePlayfield(t_playfield &p) {

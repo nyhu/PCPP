@@ -18,19 +18,24 @@ bool EnemyList::operator>(int nb)
 
 void EnemyList::populateFighter(int nb)
 {
+    if (nb <= 0)
+        return;
     if (this->ships)
         delete[] this->ships;
     this->ships = new Fighter[nb];
     this->nb = nb;
-}
-
-void EnemyList::move()
-{
-    if (this->ships)
-        for (int i = 0; i < this->nb; i++)
-        {
-            this->ships[i].move();
-        }
+    if (nb == 1)
+        return;
+    int x = this->ships[0].getPosX();
+    int y = this->ships[0].getPosY();
+    int absciceModif = 0;
+    if (x > (PLAYGROUND_W / 2))
+        absciceModif -= 2;
+    else
+        absciceModif += 2;
+    for (int i = 0; *this > i; i++) {
+        this->ships[i].setPosition(x + (absciceModif * i), y);     
+    }
 }
 
 IShip &EnemyList::getShip(int i)
