@@ -25,7 +25,7 @@ class Player : public IShip
     BulletList bullets;
 
     virtual void respawn();
-  private:
+    private:
     int lives;
 };
 
