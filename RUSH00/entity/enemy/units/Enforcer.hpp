@@ -14,6 +14,7 @@ class Enforcer : public IShip
 
     void move();
     void restart();
+    void respawn();
     virtual void attack(BulletList &b);
 };
 

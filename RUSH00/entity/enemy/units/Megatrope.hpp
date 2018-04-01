@@ -10,6 +10,7 @@ class Megatrope : public IShip
     ~Megatrope();
 
     void move();
+    void respawn();
     virtual void attack(BulletList &b);
 };
 

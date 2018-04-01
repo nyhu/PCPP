@@ -68,9 +68,9 @@ void Game::play()
         if (this->p1.getLives() == 0 || (p2 && p2->getLives() == 0))
             break;
 
-        this->display.printHud(p1.getPv(), p1.getLives(), p1.score, this->eFactory.getEnemyNb());
+        this->display.printHud(p1.getPv(), p1.getLives(), p1.score, this->eFactory.getEnemyNb(), this->eFactory.getTime());
         if (p2)
-            this->display.printHudP2(p2->getPv(), p2->getLives(), p2->score, this->eFactory.getEnemyNb());
+            this->display.printHudP2(p2->getPv(), p2->getLives(), p2->score);
         while (this->display.render(playfield, bgPlayfield, playfP1, playfP2))
             std::cout << "please resize your window";
 
@@ -147,9 +147,10 @@ void Game::score()
 {
     while (42)
     {
-        this->display.printHud(p1.getPv(), p1.getLives(), p1.score, this->eFactory.getEnemyNb());
+        clock_t t = this->eFactory.getTime();
+        this->display.printHud(p1.getPv(), p1.getLives(), p1.score, this->eFactory.getEnemyNb(), t);
         if (p2)
-            this->display.printHudP2(p2->getPv(), p2->getLives(), p2->score, this->eFactory.getEnemyNb());
+            this->display.printHudP2(p2->getPv(), p2->getLives(), p2->score);
         while (this->display.render(playfield, bgPlayfield, playfP1, playfP2))
             std::cout << "please resize your window";
                 int input = 0;

@@ -20,6 +20,7 @@ class EnemyFactory
     void collide(Player &p);
 
     int getEnemyNb();
+    clock_t getTime();
 
   private:
     clock_t startTime;

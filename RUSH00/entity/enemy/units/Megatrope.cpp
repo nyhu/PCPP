@@ -21,6 +21,16 @@ void Megatrope::move()
     AShip::move();
 }
 
+void Megatrope::respawn() {
+    if (posX == MIN_W)
+        posX = MAX_W;
+    else if (posX == MAX_W)
+        posX = MIN_W;
+    if (posY == MIN_H)
+        posY = MAX_H;
+    else if (posY == MAX_H)
+        posY = MIN_H;
+}
 
 void Megatrope::attack(BulletList &b)
 {

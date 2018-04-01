@@ -132,13 +132,14 @@ void Display::printPlayfield(t_playfield playfield, int color)
     wattron(this->win, COLOR_PAIR(NORMAL_COLOR));                
 }
 
-void Display::printHud(int pv, int lives, int score, int enemyNb)
+void Display::printHud(int pv, int lives, int score, int enemyNb, clock_t t)
 {
  std::ostringstream s;
     s << "  PV : " << std::right << std::setw(3) << pv << " / " << 100;
     s << "  LIVES : " << std::right << std::setw(3) << lives << " / " << 3;
     s << "  SCORE : " << std::left << std::setw(20) << score;
-    s << "  ENEMIES LEFT BEFORE NEXT WAVE: " << std::left << std::setw(20) << enemyNb;
+    s << "  NEXT WAVE: " << std::left << std::setw(20) << enemyNb;
+    s << "  TIME OF SURVIVAL: " << std::left << std::setw(20) << t;
 
     wattron(this->hud, COLOR_PAIR(BORDER_COLOR));
     wborder(this->hud, '|', '|', '-', '-', '*', '*', '*', '*');
@@ -150,13 +151,12 @@ void Display::printHud(int pv, int lives, int score, int enemyNb)
     wrefresh(this->hud);
 }
 
-void Display::printHudP2(int pv, int lives, int score, int enemyNb)
+void Display::printHudP2(int pv, int lives, int score)
 {
     std::ostringstream s;
     s << "  PV : " << std::right << std::setw(3) << pv << " / " << 100;
     s << "  LIVES : " << std::right << std::setw(3) << lives << " / " << 3;
     s << "  SCORE : " << std::left << std::setw(20) << score;
-    s << "  ENEMIES LEFT BEFORE NEXT WAVE: " << std::left << std::setw(20) << enemyNb;
 
     wattron(this->hudP2, COLOR_PAIR(BORDER_COLOR));
     wborder(this->hudP2, '|', '|', '-', '-', '*', '*', '*', '*');

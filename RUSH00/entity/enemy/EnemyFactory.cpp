@@ -18,7 +18,7 @@ EnemyFactory::~EnemyFactory()
     delete this->mlist;
 }
 
-EnemyFactory::EnemyFactory(EnemyFactory const & src)
+EnemyFactory::EnemyFactory(EnemyFactory const &src)
 {
     *this = src;
 }
@@ -51,7 +51,7 @@ void EnemyFactory::computePlayfield(t_playfield &p, Player &p1, Player *p2)
     this->nbOfEnemy += mlist->computePlayfield(p, p1, p2, bullets);
 
     clock_t now = clock();
-    if (this->nbOfEnemy <= ((now - this->startTime ) / 100000000))
+    if (this->nbOfEnemy <= ((now - this->startTime) / 100000000))
     {
         this->flist->populateFighter(p1.score / 100 + p1.score % 5 + 5);
         this->elist->populateEnforcer(p1.score / 250 + 1);
@@ -71,6 +71,10 @@ void EnemyFactory::attack()
 
 int EnemyFactory::getEnemyNb()
 {
-    clock_t now = clock();    
-    return nbOfEnemy - ((now - this->startTime ) / 100000000);
+    return nbOfEnemy - ((clock() - this->startTime) / 100000000);
+}
+
+clock_t EnemyFactory::getTime()
+{
+    return  (clock() - this->startTime) / (double) CLOCKS_PER_SEC;
 }

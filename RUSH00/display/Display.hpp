@@ -26,8 +26,8 @@ class Display
 
     int menu(int nbPlayer);
     int render(t_playfield playfield, t_playfield bgPlayfield, t_playfield playfP1, t_playfield playfP2);
-    void printHud(int pv, int lives, int score, int enemyNb);
-    void printHudP2(int pv, int lives, int score, int enemyNb);
+    void printHud(int pv, int lives, int score, int enemyNb,  clock_t t);
+    void printHudP2(int pv, int lives, int score);
   private:
     int resizeHandler();
     void renderBorders(WINDOW *w, int color);
