@@ -78,9 +78,6 @@ void EnemyFactory::computePlayfield(t_playfield &p, Player &p1, Player *p2)
 
     // Bullets are added last for better display
     bullets.computePlayfield(p);
-    p1.bullets.computePlayfield(p);
-    if (p2)
-        p2->bullets.computePlayfield(p);
 }
 
 void EnemyFactory::attack()

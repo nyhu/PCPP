@@ -12,6 +12,9 @@
 #define NORMAL_COLOR 1
 #define BORDER_COLOR 2
 #define BACKGROUND_COLOR 3
+#define ENEMY_COLOR 4
+#define P1_COLOR 5
+#define P2_COLOR 6
 class Display
 {
   public:
@@ -22,14 +25,14 @@ class Display
     Display &operator=(const Display &d);
 
     int menu(int nbPlayer);
-    int render(t_playfield playfield, t_playfield bgPlayfield);
+    int render(t_playfield playfield, t_playfield bgPlayfield, t_playfield playfP1, t_playfield playfP2);
     void printHud(int pv, int lives, int score, int enemyNb);
     void printHudP2(int pv, int lives, int score, int enemyNb);
   private:
     int resizeHandler();
     void renderBorders(WINDOW *w, int color);
     void printBgPlayfield(t_playfield playfield);
-    void printPlayfield(t_playfield playfield);
+    void printPlayfield(t_playfield playfield, int color);
     // std::stringstream hudInfosToStr(int pv, int lives, int score, int enemyNb);
 
     WINDOW *win;

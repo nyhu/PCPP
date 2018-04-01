@@ -13,6 +13,9 @@ Display::Display() : hudP2(NULL)
     init_pair(NORMAL_COLOR, COLOR_WHITE, COLOR_BLACK);
     init_pair(BORDER_COLOR, COLOR_BLACK, COLOR_MAGENTA);
     init_pair(BACKGROUND_COLOR, COLOR_BLUE, COLOR_BLACK);
+    init_pair(ENEMY_COLOR, COLOR_RED, COLOR_BLACK);
+    init_pair(P1_COLOR, COLOR_CYAN, COLOR_BLACK);
+    init_pair(P2_COLOR, COLOR_GREEN, COLOR_BLACK);
 
     struct winsize w;
     ioctl(0, TIOCGWINSZ, &w);
@@ -117,12 +120,14 @@ void Display::printBgPlayfield(t_playfield playfield)
     wattron(this->win, COLOR_PAIR(NORMAL_COLOR));
 }
 
-void Display::printPlayfield(t_playfield playfield)
+void Display::printPlayfield(t_playfield playfield, int color)
 {
+    wattron(this->win, COLOR_PAIR(color));
     for (int y = 1; y < PLAYGROUND_H - 1; y++)
         for (int x = 1; x < PLAYGROUND_W - 1; x++)
             if (playfield[y][x] != ' ')
                 mvwaddch(this->win, y, x, playfield[y][x]);
+    wattron(this->win, COLOR_PAIR(NORMAL_COLOR));                
 }
 
 void Display::printHud(int pv, int lives, int score, int enemyNb)
@@ -161,13 +166,15 @@ void Display::printHudP2(int pv, int lives, int score, int enemyNb)
     wrefresh(this->hudP2);
 }
 
-int Display::render(t_playfield playfield, t_playfield bgPlayfield)
+int Display::render(t_playfield playfield, t_playfield bgPlayfield, t_playfield playfP1, t_playfield playfP2)
 {
     if (resizeHandler())
         return 1;
     renderBorders(this->win, BORDER_COLOR);
     printBgPlayfield(bgPlayfield);
-    printPlayfield(playfield);
+    printPlayfield(playfield, ENEMY_COLOR);
+    printPlayfield(playfP1, P1_COLOR);
+    printPlayfield(playfP2, P2_COLOR);
     wrefresh(this->win);
     return 0;
 }

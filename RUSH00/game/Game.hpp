@@ -33,10 +33,13 @@ private:
   void computeAttacks();
 
   Display display;
-  t_playfield playfield;
-  Player p1;
-  Player *p2;
   EnemyFactory eFactory;
+  t_playfield playfield;
+
+  Player p1;
+  t_playfield playfP1;
+  Player *p2;
+  t_playfield playfP2;
 
   t_playfield bgPlayfield;
   background bg;
