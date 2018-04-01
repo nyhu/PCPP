@@ -11,7 +11,7 @@ Player::~Player()
 {
 }
 
-void Player::control(int input)
+bool Player::control(int input)
 {
     switch (input)
     {
@@ -27,7 +27,10 @@ void Player::control(int input)
     case KEY_RIGHT:
         this->directionX = 1;
         break;
+    case 27:
+        return true;
     }
+    return false;
 }
 
 void Player::die()

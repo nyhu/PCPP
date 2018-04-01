@@ -26,7 +26,7 @@ public:
   void play();
 
 private:
-  void takeInputUntilNextFrame(clock_t x_startTime);
+  bool takeInputUntilNextFrame(clock_t x_startTime);
   void computePlayfield();
   void computeMoves();
   void computeAttacks();

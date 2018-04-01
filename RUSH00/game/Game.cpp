@@ -39,11 +39,12 @@ void Game::play()
         while (this->display.render(this->playfield, this->bgPlayfield))
             std::cout << "please resize your window";
 
-        takeInputUntilNextFrame(x_startTime);
+        if (takeInputUntilNextFrame(x_startTime))
+            break;
     }
 }
 
-void Game::takeInputUntilNextFrame(clock_t x_startTime)
+bool Game::takeInputUntilNextFrame(clock_t x_startTime)
 {
     int time_left = 0;
     clock_t x_countTime;
@@ -55,11 +56,12 @@ void Game::takeInputUntilNextFrame(clock_t x_startTime)
     {
         int input = 0;
         while ((input = getch()) != ERR)
-            this->p1.control(input);
-
+            if (this->p1.control(input))
+                return true;
         x_countTime = clock();
         time_left = FRAME_CLOCK + x_startTime - x_countTime;
     }
+    return false;
 }
 
 void Game::computeMoves()
