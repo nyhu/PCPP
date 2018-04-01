@@ -15,6 +15,7 @@ class Player : public IShip
     int getLives();
     void die();
 
+    AShip *attack();
     private:
     int lives;
 };

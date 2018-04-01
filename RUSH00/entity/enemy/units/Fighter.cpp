@@ -32,3 +32,8 @@ void Fighter::move()
     }
     AShip::move();
 }
+
+AShip *Fighter::attack()
+{
+    return NULL;
+}

@@ -11,6 +11,7 @@
 #include "../display/Display.hpp"
 #include "../entity/player/Player.hpp"
 #include "../entity/enemy/EnemyFactory.hpp"
+#include "../entity/bullets/BulletList.hpp"
 
 class Game
 {
@@ -27,11 +28,13 @@ private:
   void takeInputUntilNextFrame(clock_t x_startTime);
   void computePlayfield();
   void computeMoves();
+  void computeAttacks();
 
   Display display;
   t_playfield playfield;
   Player p1;
   EnemyFactory eFactory;
+  BulletList bullets;
 };
 
 #endif

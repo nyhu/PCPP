@@ -11,7 +11,8 @@ class AShip
 {
   public:
     AShip();
-    ~AShip();
+    AShip(int pv, char ouput, int posX, int posY, int directionX, int directionY);
+    virtual ~AShip();
 
     virtual void move();
     void stop();

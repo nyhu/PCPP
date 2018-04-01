@@ -2,6 +2,7 @@
 #define __ENEMY_FACTORY__
 
 #include "../ships/IShip.hpp"
+#include "../bullets/BulletList.hpp"
 #include "EnemyList.hpp"
 
 class EnemyFactory {
@@ -10,7 +11,7 @@ class EnemyFactory {
     ~EnemyFactory();
 
     void move();
-    void computePlayfield(t_playfield &p, IShip &player);
+    void computePlayfield(t_playfield &p, IShip &player, BulletList& bList);
 
     int getScore();
     

@@ -4,6 +4,11 @@ AShip::AShip() : pv(100), ouput('0'), posX(0), posY(0), directionX(0), direction
 {
 }
 
+AShip::AShip(int pv, char ouput, int posX, int posY, int directionX, int directionY)
+    : pv(pv), ouput(ouput), posX(posX), posY(posY), directionX(directionX), directionY(directionY)
+{
+}
+
 AShip::~AShip()
 {
 }
@@ -28,16 +33,19 @@ void AShip::stop()
     this->directionX = 0;
 }
 
-int AShip::collide(AShip &player) {
-    if (this->pv >= player.pv) {
-        player.pv = 0;
-        return 0;
-    }
-    player.pv -= this->pv;
-
-    int mem = this->pv;
-    this->pv = 0;
-    return mem;
+// Always collide with a player ship or a player bullet
+// return damage done for score incrementation
+int AShip::collide(AShip &s)
+{
+    int s1dmg = this->pv;
+    int s2dmg = s.pv;
+    s.pv -= s1dmg;
+    this->pv -= s2dmg;
+    if (s.pv < 0)
+        s.pv = 0;
+    if (this->pv < 0)
+        this->pv = 0;
+    return s1dmg;
 }
 
 void AShip::setDirection(int x, int y)

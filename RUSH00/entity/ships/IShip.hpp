@@ -7,7 +7,7 @@ class IShip : public AShip
 {
   public:
     virtual ~IShip() {}
-    // virtual IBullets *attack();
+    virtual AShip *attack() = 0;
 };
 
 #endif

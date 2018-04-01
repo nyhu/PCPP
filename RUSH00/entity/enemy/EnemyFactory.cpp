@@ -19,21 +19,22 @@ void EnemyFactory::move()
     }
 }
 
-void EnemyFactory::computePlayfield(t_playfield &p, IShip &player)
+void EnemyFactory::computePlayfield(t_playfield &p, IShip &player, BulletList& bList)
 {
-    bool listAlive = false;
+    bool enemyListAlive = false;
     for (int i = 0; *this->elist > i; i++)
     {
         IShip &s = this->elist->getShip(i);
         if (s.getPosX() == player.getPosX() && s.getPosY() == player.getPosY())
             this->score += s.collide(player);
+        this->score += bList.collide(s);
         if (s.getPv() == 0)
             continue;
         p[s.getPosY()][s.getPosX()] = s.getOutput();
-        listAlive = true;
+        enemyListAlive = true;
     }
-    if (!listAlive)
-        this->elist->populateFighter(10);
+    if (!enemyListAlive)
+        this->elist->populateFighter(this->score / 10);
 }
 
 int EnemyFactory::getScore()

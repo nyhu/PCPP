@@ -42,3 +42,7 @@ void Player::die() {
 int Player::getLives() {
     return this->lives;
 }
+
+AShip *Player::attack() {
+    return new AShip(10, '-', this->posX + 1, this->posY, 1, 0);
+}
