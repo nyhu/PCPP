@@ -13,6 +13,7 @@ SRC = main.cpp \
 	entity/bullets/BulletList.cpp
 OBJ	= $(SRC:.cpp=.o)
 OS = $(shell uname -s)
+LIBS = -lncurses
 
 ifeq ($(OS), Linux)
 	FLAGS += -std=c++11
@@ -20,11 +21,14 @@ else
 	FLAGS += -std=c++98
 endif
 
-all: $(OBJ)
-	$(CC) -o $(NAME) $(FLAGS) $(OBJ) -lncurses
+all: $(NAME)
 
 %.o: %.cpp
 	$(CC) -o $@ -c $< $(FLAGS)
+
+$(NAME): $(OBJ)
+	$(CC) $(FLAGS) -o $(NAME) $(LIBS) $(OBJ)
+
 
 re: fclean all
 
