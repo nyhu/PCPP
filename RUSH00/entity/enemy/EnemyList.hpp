@@ -4,6 +4,7 @@
 #include "../ships/IShip.hpp"
 #include "units/Fighter.hpp"
 #include "units/Enforcer.hpp"
+#include "../player/Player.hpp"
 
 class EnemyList
 {
@@ -17,6 +18,8 @@ class EnemyList
     void populateEnforcer(int nb);
 
     void move();
+    void attack(BulletList &b);
+    int computePlayfield(t_playfield &p, Player &p1, Player *p2, BulletList &b);
 
     IShip &getShip(int i);
     int   getNb();
