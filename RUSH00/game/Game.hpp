@@ -19,7 +19,7 @@ class Game
 public:
   Game();
   Game(const Game &g);
-  ~Game();
+  virtual ~Game();
   Game &operator=(const Game &g);//no sens but copliente ^^
 
 

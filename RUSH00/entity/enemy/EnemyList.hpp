@@ -9,7 +9,7 @@ class EnemyList
 {
   public:
     EnemyList();
-    ~EnemyList();
+    virtual ~EnemyList();
     EnemyList(EnemyList const & src);
     EnemyList &operator=(EnemyList const &rhs);
 

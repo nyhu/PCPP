@@ -20,7 +20,7 @@ class Display
   public:
     Display();
     Display(const Display &d);
-    ~Display();
+    virtual ~Display();
     Display &operator=(const Display &d);//no sens but copliente ^^
 
 

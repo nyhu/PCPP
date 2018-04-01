@@ -9,7 +9,7 @@ class BulletList
 {
 public:
   BulletList();
-  ~BulletList();
+  virtual ~BulletList();
   BulletList(BulletList const & src);
   BulletList &operator=(const BulletList &rhs);
 

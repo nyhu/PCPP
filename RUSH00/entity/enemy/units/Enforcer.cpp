@@ -15,6 +15,24 @@ Enforcer::~Enforcer()
 {
 }
 
+Enforcer::Enforcer(Enforcer const & src)
+{
+    *this = src;
+}
+
+Enforcer &Enforcer::operator=(const Enforcer &rhs)
+{
+    this->pv = rhs.pv ;
+    this->ouput = rhs.ouput;
+    this->posX = rhs.posX;
+    this->posY = rhs.posY;
+    this->directionX = rhs.directionY;
+    this->directionY = rhs.directionX;
+    this->frameSinceLastAttack = rhs.frameSinceLastAttack;
+    return (*this);
+}
+
+
 void Enforcer::move()
 {
     if ((this->directionX || this->directionY) && (rand() % 42 > 40))

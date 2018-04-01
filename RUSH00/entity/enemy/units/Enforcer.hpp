@@ -8,7 +8,9 @@ class Enforcer : public IShip
 {
   public:
     Enforcer();
-    ~Enforcer();
+    virtual ~Enforcer();
+    Enforcer(Enforcer const & src);
+    Enforcer &operator=(const Enforcer &rhs);
 
     void move();
     void restart();

@@ -10,7 +10,7 @@ class EnemyFactory
 {
   public:
     EnemyFactory();
-    ~EnemyFactory();
+    virtual ~EnemyFactory();
     EnemyFactory(EnemyFactory const & src);
     EnemyFactory &operator=(const EnemyFactory &rhs);    
 

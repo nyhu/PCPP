@@ -10,7 +10,7 @@ class Player : public IShip
     Player();
     Player(int x, int y);
     Player(const Player &p);
-    ~Player();
+    virtual ~Player();
     Player &operator=(const Player &rhs);
 
     bool control(int input);

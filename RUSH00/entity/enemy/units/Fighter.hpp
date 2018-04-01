@@ -7,7 +7,7 @@ class Fighter : public IShip
 {
   public:
     Fighter();
-    ~Fighter();
+    virtual ~Fighter();
     Fighter(Fighter const & src);
     Fighter &operator=(const Fighter &rhs);
 
@@ -15,6 +15,7 @@ class Fighter : public IShip
     void move();
     void restart();
     virtual void attack(BulletList &b);
+    virtual void respawn();
 };
 
 #endif

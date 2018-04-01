@@ -58,10 +58,10 @@ void AShip::respawn()
         posX = MAX_W;
     else if (posX == MAX_W)
         posX = MIN_W;
-    if (posY == MIN_H)
-        posY = MAX_H;
-    else if (posY == MAX_H)
-        posY = MIN_H;
+    // if (posY == MIN_H)
+    //     posY = MAX_H;
+    // else if (posY == MAX_H)
+    //     posY = MIN_H;
  return ;
 }
 
@@ -96,7 +96,7 @@ bool AShip::touchBorder()
 {
     if (this->posX <= MIN_W || this->posY <= MIN_H)
         return true;
-    if (this->posX >= MAX_W || this->posY >= MAX_H - 2)
+    if (this->posX >= MAX_W || this->posY >= MAX_H)
         return true;
     return false;
 }
