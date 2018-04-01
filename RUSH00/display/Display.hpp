@@ -21,6 +21,7 @@ class Display
 
     Display &operator=(const Display &d);
 
+    int menu(int nbPlayer);
     int render(t_playfield playfield, t_playfield bgPlayfield);
     void printHud(int pv, int lives, int score, int enemyNb);
   private:

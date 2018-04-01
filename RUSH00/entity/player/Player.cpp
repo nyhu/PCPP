@@ -33,6 +33,28 @@ bool Player::control(int input)
     return false;
 }
 
+bool Player::controlP2(int input)
+{
+    switch (input)
+    {
+    case 's':
+        this->directionY = 1;
+        break;
+    case 'z':
+        this->directionY = -1;
+        break;
+    case 'q':
+        this->directionX = -1;
+        break;
+    case 'd':
+        this->directionX = 1;
+        break;
+    case 27:
+        return true;
+    }
+    return false;
+}
+
 void Player::die()
 {
     this->lives--;

@@ -12,6 +12,7 @@ class Player : public IShip
     ~Player();
 
     bool control(int input);
+    bool controlP2(int input);
     int getLives();
     void die();
 

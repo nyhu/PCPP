@@ -20,17 +20,23 @@ void EnemyFactory::move()
     }
 }
 
-void EnemyFactory::computePlayfield(t_playfield &p, IShip &player, BulletList &bList)
+void EnemyFactory::computePlayfield(t_playfield &p, IShip &p1, IShip *p2, BulletList &bList)
 {
     nbOfEnemy = 0;
     for (int i = 0; *this->elist > i; i++)
     {
         IShip &s = this->elist->getShip(i);
-        if (s.getPosX() == player.getPosX() && s.getPosY() == player.getPosY())
-            this->score += s.collide(player);
+
+        if (s.getPosX() == p1.getPosX() && s.getPosY() == p1.getPosY())
+            this->score += s.collide(p1);
+        if (p2 && s.getPosX() == p2->getPosX() && p2->getPosY() == p2->getPosY())
+            this->score += s.collide(*p2);
+
         this->score += bList.collide(s);
+
         if (s.getPv() == 0)
             continue;
+
         p[s.getPosY()][s.getPosX()] = s.getOutput();
         nbOfEnemy++;
     }
@@ -46,7 +52,7 @@ void EnemyFactory::attack(BulletList &bList)
         if (s.getPv() == 0)
             continue;
         bList.pushBullet(s.attack());
-    }   
+    }
 }
 
 int EnemyFactory::getScore()

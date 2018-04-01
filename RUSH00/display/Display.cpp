@@ -82,6 +82,30 @@ void Display::renderBorders()
     wattron(this->win, COLOR_PAIR(NORMAL_COLOR));
 }
 
+int Display::menu(int nbPlayer)
+{
+    if (resizeHandler())
+        return 1;
+    renderBorders();
+
+    if (!nbPlayer)
+        wattron(this->win, COLOR_PAIR(BORDER_COLOR));
+    wmove(this->win, PLAYGROUND_H / 2 - 2, PLAYGROUND_W / 2 - 3);
+    waddstr(this->win, "1 PLAYER");
+
+    wattron(this->win, COLOR_PAIR(NORMAL_COLOR));
+
+    if (nbPlayer)
+        wattron(this->win, COLOR_PAIR(BORDER_COLOR));
+    wmove(this->win, PLAYGROUND_H / 2 + 2, PLAYGROUND_W / 2 - 3);    
+    waddstr(this->win, "2 PLAYER");
+
+    wattron(this->win, COLOR_PAIR(NORMAL_COLOR));
+
+    wrefresh(this->win);
+    return 0;
+}
+
 void Display::printBgPlayfield(t_playfield playfield)
 {
     wattron(this->win, COLOR_PAIR(BACKGROUND_COLOR));

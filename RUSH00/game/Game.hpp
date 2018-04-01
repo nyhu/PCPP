@@ -23,6 +23,7 @@ public:
 
   Game &operator=(const Game &g);
 
+  void menu();
   void play();
 
 private:
@@ -30,10 +31,11 @@ private:
   void computePlayfield();
   void computeMoves();
   void computeAttacks();
-
+  
   Display display;
   t_playfield playfield;
   Player p1;
+  Player *p2;
   EnemyFactory eFactory;
   BulletList bullets;
 
