@@ -12,6 +12,7 @@
 #include "../entity/player/Player.hpp"
 #include "../entity/enemy/EnemyFactory.hpp"
 #include "../entity/bullets/BulletList.hpp"
+#include "../entity/background.hpp"
 
 class Game
 {
@@ -35,6 +36,8 @@ private:
   Player p1;
   EnemyFactory eFactory;
   BulletList bullets;
+  background bg;
+
 };
 
 #endif

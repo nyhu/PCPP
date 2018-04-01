@@ -64,6 +64,7 @@ void Game::takeInputUntilNextFrame(clock_t x_startTime)
 
 void Game::computeMoves()
 {
+    this->bg.move();
     this->p1.move();
     this->bullets.moveBullets();
     this->eFactory.move();
@@ -77,6 +78,9 @@ void Game::computeAttacks()
 void Game::computePlayfield()
 {
     std::memset(this->playfield, ' ', PLAYGROUND_H * PLAYGROUND_W);
+    
+    this->bg.computePlayfield(this->playfield);
+
     this->playfield[this->p1.getPosY()][this->p1.getPosX()] = this->p1.getOutput();
     this->eFactory.computePlayfield(this->playfield, this->p1, this->bullets);
     this->bullets.computePlayfield(this->playfield);

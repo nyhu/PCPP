@@ -8,6 +8,7 @@ EnemyFactory::EnemyFactory() : score(0)
 
 EnemyFactory::~EnemyFactory()
 {
+    delete this->elist;
 }
 
 void EnemyFactory::move()

@@ -4,6 +4,7 @@ FLAGS = -Wall -Wextra -Werror
 SRC = main.cpp \
 	game/Game.cpp \
 	display/Display.cpp \
+	entity/background.cpp \
 	entity/player/Player.cpp \
 	entity/ships/AShip.cpp \
 	entity/enemy/EnemyFactory.cpp \
@@ -16,7 +17,7 @@ OS = $(shell uname -s)
 ifeq ($(OS), Linux)
 	FLAGS += -std=c++11
 else
-	FLAGS += -std=std98
+	FLAGS += -std=c++98
 endif
 
 all: $(OBJ)
