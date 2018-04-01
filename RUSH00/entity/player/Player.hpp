@@ -2,9 +2,9 @@
 #define __PLAYER__
 
 #include <curses.h>
-#include "../ships/AShip.hpp"
+#include "../ships/IShip.hpp"
 
-class Player : public AShip
+class Player : public IShip
 {
     public:
     Player();

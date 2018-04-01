@@ -29,7 +29,10 @@ void Game::play()
 
         computeMoves();
         computePlayfield();
-
+        if (this->p1.getPv() == 0)
+            std::cout << "Game OVER";
+        
+        this->display.printHud(p1.getPv());
         while (this->display.render(this->playfield))
             std::cout << "please resize your window";
     }
@@ -65,5 +68,5 @@ void Game::computePlayfield()
 {
     std::memset(this->playfield, ' ', PLAYGROUND_H * PLAYGROUND_W);
     this->playfield[this->p1.getPosY()][this->p1.getPosX()] = this->p1.getOutput();
-    this->eFactory.computePlayfield(playfield);
+    this->eFactory.computePlayfield(playfield, this->p1);
 }

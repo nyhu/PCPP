@@ -10,7 +10,7 @@ class EnemyFactory {
     ~EnemyFactory();
 
     void move();
-    void computePlayfield(t_playfield &p);
+    void computePlayfield(t_playfield &p, IShip &player);
     
     private:
     EnemyList *elist;

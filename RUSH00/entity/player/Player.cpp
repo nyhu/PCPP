@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-Player::Player(): AShip()
+Player::Player()
 {
     this->ouput = '>';
     this->posX = 5;

@@ -4,6 +4,8 @@
 #include <sys/ioctl.h>
 #include <curses.h>
 #include <iostream>
+#include <iomanip> 
+#include <sstream>
 #include <string>
 #include "../settings/settings.hpp"
 
@@ -20,6 +22,7 @@ class Display
     Display &operator=(const Display &d);
 
     int render(t_playfield playfield);
+    void printHud(int pv);
   private:
     int resizeHandler();
     void renderBorders();
@@ -30,6 +33,8 @@ class Display
     int maxW;
     int mainWinH;
     int mainWinW;
+
+    WINDOW *hud;
 };
 
 #endif

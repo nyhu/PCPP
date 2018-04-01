@@ -2,6 +2,8 @@
 
 Fighter::Fighter()
 {
+    this->pv = 10;
+
     srand(time(0));
     this->posX = rand() % PLAYGROUND_W;
     this->posY = rand() % 2;

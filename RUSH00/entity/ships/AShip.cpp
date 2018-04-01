@@ -28,6 +28,16 @@ void AShip::stop()
     this->directionX = 0;
 }
 
+void AShip::collide(AShip &player) {
+    if (this->pv >= player.pv) {
+        player.pv = 0;
+        return;
+    }
+    player.pv -= this->pv;
+    this->pv = 0;
+    return;
+}
+
 void AShip::setDirection(int x, int y)
 {
     this->directionX = x;
@@ -53,4 +63,9 @@ int AShip::getPosY()
 char AShip::getOutput()
 {
     return this->ouput;
+}
+
+int AShip::getPv()
+{
+    return this->pv;
 }
