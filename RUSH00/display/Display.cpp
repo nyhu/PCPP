@@ -4,6 +4,7 @@ Display::Display()
 {
     initscr(); // init ncurse
     // cbreak();              // desactivate input buffering: one char at a time
+    curs_set(0);           // hide cursor
     noecho();              // doesn't echo input characters
     nodelay(stdscr, TRUE); // getch() return imediatly if no key is pressed
     keypad(stdscr, TRUE);  // get special char like arrows and delete
@@ -11,6 +12,7 @@ Display::Display()
     start_color(); // init color usage
     init_pair(NORMAL_COLOR, COLOR_WHITE, COLOR_BLACK);
     init_pair(BORDER_COLOR, COLOR_BLACK, COLOR_MAGENTA);
+    init_pair(BACKGROUND_COLOR, COLOR_CYAN, COLOR_BLACK);
 
     struct winsize w;
     ioctl(0, TIOCGWINSZ, &w);
@@ -80,11 +82,23 @@ void Display::renderBorders()
     wattron(this->win, COLOR_PAIR(NORMAL_COLOR));
 }
 
+void Display::printBgPlayfield(t_playfield playfield)
+{
+    wattron(this->hud, COLOR_PAIR(BACKGROUND_COLOR));
+
+    for (int y = 1; y < PLAYGROUND_H - 1; y++)
+        for (int x = 1; x < PLAYGROUND_W - 1; x++)
+            mvwaddch(this->win, y, x, playfield[y][x]);
+
+    wattron(this->hud, COLOR_PAIR(NORMAL_COLOR));
+}
+
 void Display::printPlayfield(t_playfield playfield)
 {
     for (int y = 1; y < PLAYGROUND_H - 1; y++)
         for (int x = 1; x < PLAYGROUND_W - 1; x++)
-            mvwaddch(this->win, y, x, playfield[y][x]);
+            if (playfield[y][x] != ' ')
+                mvwaddch(this->win, y, x, playfield[y][x]);
 }
 
 void Display::printHud(int pv, int lives, int score)
@@ -104,11 +118,12 @@ void Display::printHud(int pv, int lives, int score)
     wrefresh(this->hud);
 }
 
-int Display::render(t_playfield playfield)
+int Display::render(t_playfield playfield, t_playfield bgPlayfield)
 {
     if (resizeHandler())
         return 1;
     renderBorders();
+    printBgPlayfield(bgPlayfield);
     printPlayfield(playfield);
     wrefresh(this->win);
     return 0;

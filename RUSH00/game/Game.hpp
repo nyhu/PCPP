@@ -36,6 +36,8 @@ private:
   Player p1;
   EnemyFactory eFactory;
   BulletList bullets;
+
+  t_playfield bgPlayfield;
   background bg;
 
 };

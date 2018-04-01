@@ -16,6 +16,7 @@ class AShip
 
     virtual void move();
     void stop();
+    void respawn();
     // IBullets *attack();
     int collide(AShip &s);
 

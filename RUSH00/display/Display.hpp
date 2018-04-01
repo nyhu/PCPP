@@ -11,7 +11,7 @@
 
 #define NORMAL_COLOR 1
 #define BORDER_COLOR 2
-
+#define BACKGROUND_COLOR 3
 class Display
 {
   public:
@@ -21,11 +21,12 @@ class Display
 
     Display &operator=(const Display &d);
 
-    int render(t_playfield playfield);
+    int render(t_playfield playfield, t_playfield bgPlayfield);
     void printHud(int pv, int lives, int score);
   private:
     int resizeHandler();
     void renderBorders();
+    void printBgPlayfield(t_playfield playfield);
     void printPlayfield(t_playfield playfield);
 
     WINDOW *win;

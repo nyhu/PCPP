@@ -25,12 +25,26 @@ void AShip::move()
         this->posY = 1;
     if (this->posY > (PLAYGROUND_H - 2))
         this->posY = PLAYGROUND_H - 2;
+    if (this->touchBorder())
+        respawn();
 }
 
 void AShip::stop()
 {
     this->directionY = 0;
     this->directionX = 0;
+}
+
+void AShip::respawn()
+{
+    if (posX == MIN_W)
+        posX = MAX_W;
+    else if (posY == MIN_H)
+        posY = MAX_H;
+    else if (posX == MAX_W)
+        posX = MIN_W;
+    else if (posY == MAX_H)
+        posY = MIN_H;
 }
 
 // Always collide with a player ship or a player bullet
@@ -60,7 +74,8 @@ void AShip::setPosition(int x, int y)
     this->posY = y;
 }
 
-bool AShip::touchBorder() {
+bool AShip::touchBorder()
+{
     if (this->posX == 1 || this->posY == 1)
         return true;
     if (this->posX == PLAYGROUND_W - 2 || this->posY == PLAYGROUND_W - 2)

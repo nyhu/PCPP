@@ -36,7 +36,7 @@ void Game::play()
             break;
 
         this->display.printHud(p1.getPv(), p1.getLives(), this->eFactory.getScore());
-        while (this->display.render(this->playfield))
+        while (this->display.render(this->playfield, this->bgPlayfield))
             std::cout << "please resize your window";
 
         takeInputUntilNextFrame(x_startTime);
@@ -79,8 +79,9 @@ void Game::computeAttacks()
 void Game::computePlayfield()
 {
     std::memset(this->playfield, ' ', PLAYGROUND_H * PLAYGROUND_W);
+    std::memset(this->bgPlayfield, ' ', PLAYGROUND_H * PLAYGROUND_W);
     
-    this->bg.computePlayfield(this->playfield);
+    this->bg.computePlayfield(this->bgPlayfield);
     this->bullets.collide(this->p1);
     this->playfield[this->p1.getPosY()][this->p1.getPosX()] = this->p1.getOutput();
     this->eFactory.computePlayfield(this->playfield, this->p1, this->bullets);
