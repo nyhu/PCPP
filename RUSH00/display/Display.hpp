@@ -22,7 +22,7 @@ class Display
     Display &operator=(const Display &d);
 
     int render(t_playfield playfield);
-    void printHud(int pv);
+    void printHud(int pv, int lives);
   private:
     int resizeHandler();
     void renderBorders();

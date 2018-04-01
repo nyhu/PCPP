@@ -29,10 +29,13 @@ void Game::play()
 
         computeMoves();
         computePlayfield();
+
         if (this->p1.getPv() == 0)
-            std::cout << "Game OVER";
-        
-        this->display.printHud(p1.getPv());
+            this->p1.die();
+        if (this->p1.getLives() == 0)
+            break;
+
+        this->display.printHud(p1.getPv(), p1.getLives());
         while (this->display.render(this->playfield))
             std::cout << "please resize your window";
     }

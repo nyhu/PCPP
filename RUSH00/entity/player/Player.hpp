@@ -12,6 +12,11 @@ class Player : public IShip
     ~Player();
 
     void control(int input);
+    int getLives();
+    void die();
+
+    private:
+    int lives;
 };
 
 #endif
