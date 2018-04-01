@@ -10,6 +10,7 @@ class Fighter : public IShip
     ~Fighter();
 
     void move();
+    void restart();
     AShip *attack();
 };
 

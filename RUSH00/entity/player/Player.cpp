@@ -80,3 +80,8 @@ AShip *Player::attack()
     ++frameSinceLastAttack;
     return NULL;
 }
+
+void Player::respawn()
+{
+    return;
+}

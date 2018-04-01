@@ -17,6 +17,7 @@ class Player : public IShip
     void die();
 
     AShip *attack();
+    virtual void respawn();
     private:
     int lives;
 };

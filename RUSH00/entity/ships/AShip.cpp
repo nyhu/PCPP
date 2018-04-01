@@ -39,12 +39,13 @@ void AShip::respawn()
 {
     if (posX == MIN_W)
         posX = MAX_W;
-    else if (posY == MIN_H)
-        posY = MAX_H;
     else if (posX == MAX_W)
         posX = MIN_W;
+    if (posY == MIN_H)
+        posY = MAX_H;
     else if (posY == MAX_H)
         posY = MIN_H;
+ return ;
 }
 
 // Always collide with a player ship or a player bullet
