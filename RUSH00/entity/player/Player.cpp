@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-Player::Player() : lives(3)
+Player::Player() : score(0), lives(3)
 {
     this->ouput = '>';
     this->posX = 5;
@@ -68,6 +68,12 @@ void Player::die()
 int Player::getLives()
 {
     return this->lives;
+}
+
+void Player::move()
+{
+    AShip::move();
+    bullets.moveBullets();
 }
 
 AShip *Player::attack()

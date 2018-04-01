@@ -31,17 +31,15 @@ private:
   void computePlayfield();
   void computeMoves();
   void computeAttacks();
-  
+
   Display display;
   t_playfield playfield;
   Player p1;
   Player *p2;
   EnemyFactory eFactory;
-  BulletList bullets;
 
   t_playfield bgPlayfield;
   background bg;
-
 };
 
 #endif

@@ -24,6 +24,7 @@ class Display
     int menu(int nbPlayer);
     int render(t_playfield playfield, t_playfield bgPlayfield);
     void printHud(int pv, int lives, int score, int enemyNb);
+    void printHudP2(int pv, int lives, int score, int enemyNb);
   private:
     int resizeHandler();
     void renderBorders();
@@ -37,6 +38,7 @@ class Display
     int mainWinW;
 
     WINDOW *hud;
+    WINDOW *hudP2;
 };
 
 #endif

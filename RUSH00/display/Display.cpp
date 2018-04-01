@@ -1,6 +1,6 @@
 #include "Display.hpp"
 
-Display::Display()
+Display::Display(): hudP2(NULL)
 {
     initscr(); // init ncurse
     // cbreak();              // desactivate input buffering: one char at a time
@@ -23,6 +23,7 @@ Display::Display()
     this->win = newwin(PLAYGROUND_H, PLAYGROUND_W, this->mainWinH, this->mainWinW); // init a game window
 
     this->hud = newwin(2, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW); // init a hud window
+    this->hudP2 = newwin(2, PLAYGROUND_W, this->mainWinH + PLAYGROUND_H, this->mainWinW); // init a hud window
 }
 
 Display::Display(const Display &d)
@@ -52,10 +53,10 @@ int Display::resizeHandler()
     struct winsize w;
     ioctl(0, TIOCGWINSZ, &w);
 
+    if (w.ws_row < PLAYGROUND_H + 4 || w.ws_col < PLAYGROUND_W) // for hight we had huds total size
+        return 1;
     if (this->maxH == w.ws_row && this->maxW == w.ws_col)
         return 0;
-    if (w.ws_row < PLAYGROUND_H || w.ws_col < PLAYGROUND_W)
-        return 1;
     wborder(this->win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '); // erase borders
     wrefresh(this->win);                                        // erase win content
     delwin(this->win);                                          // free win in memory
@@ -64,6 +65,10 @@ int Display::resizeHandler()
     wrefresh(this->hud);                                        // erase hud content
     delwin(this->hud);                                          // free hud in memory
 
+    wborder(this->hudP2, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '); // erase borders
+    wrefresh(this->hudP2);                                        // erase hud content
+    delwin(this->hudP2);                                          // free hud in memory
+
     this->maxH = w.ws_row;
     this->maxW = w.ws_col;
     this->mainWinH = (this->maxH - PLAYGROUND_H) / 2;
@@ -71,6 +76,7 @@ int Display::resizeHandler()
     this->win = newwin(PLAYGROUND_H, PLAYGROUND_W, this->mainWinH, this->mainWinW);
 
     this->hud = newwin(2, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW); // init a hud window
+    this->hudP2 = newwin(2, PLAYGROUND_W, this->mainWinH + PLAYGROUND_H, this->mainWinW); // init a hud window
 
     return 0;
 }
@@ -141,6 +147,24 @@ void Display::printHud(int pv, int lives, int score, int enemyNb)
     waddstr(this->hud, s.str().c_str());
 
     wrefresh(this->hud);
+}
+
+void Display::printHudP2(int pv, int lives, int score, int enemyNb)
+{
+    std::ostringstream s;
+    s << "  PV : " << std::right << std::setw(3) << pv << " / " << 100;
+    s << "  LIVES : " << std::right << std::setw(3) << lives << " / " << 3;
+    s << "  SCORE : " << std::left << std::setw(20) << score;
+    s << "  ENEMIES LEFT BEFORE NEXT WAVE: " << std::left << std::setw(20) << enemyNb;
+
+    wattron(this->hudP2, COLOR_PAIR(BORDER_COLOR));
+    wborder(this->hudP2, '|', '|', '-', '-', '*', '*', '*', '*');
+    wattron(this->hudP2, COLOR_PAIR(NORMAL_COLOR));
+
+    wmove(this->hudP2, 0, 2);
+    waddstr(this->hudP2, s.str().c_str());
+
+    wrefresh(this->hudP2);
 }
 
 int Display::render(t_playfield playfield, t_playfield bgPlayfield)

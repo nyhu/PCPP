@@ -2,25 +2,27 @@
 #define __ENEMY_FACTORY__
 
 #include "../ships/IShip.hpp"
+#include "../player/Player.hpp"
 #include "../bullets/BulletList.hpp"
 #include "EnemyList.hpp"
 
-class EnemyFactory {
-    public:
+class EnemyFactory
+{
+  public:
     EnemyFactory();
     ~EnemyFactory();
 
     void move();
-    void computePlayfield(t_playfield &p, IShip &p1, IShip *p2, BulletList& bList);
-    void attack(BulletList &bList);
+    void computePlayfield(t_playfield &p, Player &p1, Player *p2);
+    void attack();
+    void collide(Player &p);
 
-    int getScore();
     int getEnemyNb();
-    
-    private:
+
+  private:
     EnemyList *elist;
-    int score;
     int nbOfEnemy;
+    BulletList bullets;
 };
 
 #endif

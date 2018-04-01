@@ -3,10 +3,11 @@
 
 #include <curses.h>
 #include "../ships/IShip.hpp"
+#include "../bullets/BulletList.hpp"
 
 class Player : public IShip
 {
-    public:
+  public:
     Player();
     Player(const Player &p);
     ~Player();
@@ -17,7 +18,12 @@ class Player : public IShip
     void die();
 
     AShip *attack();
-    private:
+    void move();
+
+    long score;
+    BulletList bullets;
+
+  private:
     int lives;
 };
 
