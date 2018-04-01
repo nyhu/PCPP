@@ -1,11 +1,11 @@
 #include "AShip.hpp"
 
-AShip::AShip() : pv(100), ouput('0'), posX(0), posY(0), directionX(0), directionY(0)
+AShip::AShip() : pv(100), ouput('0'), posX(0), posY(0), directionX(0), directionY(0), frameSinceLastAttack(0)
 {
 }
 
 AShip::AShip(int pv, char ouput, int posX, int posY, int directionX, int directionY)
-    : pv(pv), ouput(ouput), posX(posX), posY(posY), directionX(directionX), directionY(directionY)
+    : pv(pv), ouput(ouput), posX(posX), posY(posY), directionX(directionX), directionY(directionY), frameSinceLastAttack(0)
 {
 }
 

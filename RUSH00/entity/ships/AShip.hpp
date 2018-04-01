@@ -35,6 +35,7 @@ class AShip
     int posY;
     short directionX;
     short directionY;
+    short frameSinceLastAttack;
 };
 
 #endif

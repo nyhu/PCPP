@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-Player::Player(): lives(3)
+Player::Player() : lives(3)
 {
     this->ouput = '>';
     this->posX = 5;
@@ -30,7 +30,8 @@ void Player::control(int input)
     }
 }
 
-void Player::die() {
+void Player::die()
+{
     this->lives--;
     if (this->lives == 0)
         return;
@@ -39,10 +40,18 @@ void Player::die() {
     this->posY = 30;
 }
 
-int Player::getLives() {
+int Player::getLives()
+{
     return this->lives;
 }
 
-AShip *Player::attack() {
-    return new AShip(10, '-', this->posX + 1, this->posY, 1, 0);
+AShip *Player::attack()
+{
+    if (frameSinceLastAttack > 5)
+    {
+        frameSinceLastAttack = 0;
+        return new AShip(10, '-', this->posX + 1, this->posY, 1, 0);
+    }
+    ++frameSinceLastAttack;
+    return NULL;
 }
