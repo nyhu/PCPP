@@ -2,21 +2,13 @@
 
 Enforcer::Enforcer()
 {
-    this->pv = 10;
+    this->pv = 200;
+    this->ouput = '@';
 
     srand(time(0));
-    this->posX = rand() % PLAYGROUND_W;
-    this->posY = rand() % 2;
-    if (this->posY > 1)
-        this->posY = MAX_H;
-    else
-        this->posY = MIN_H;
-
-    this->directionX = ((rand() % 4) - 2);
-    if (this->posY == MIN_H)
-        this->directionY = 1;
-    else
-        this->directionY = -1;
+    this->posX = MAX_W - 2;
+    this->posY = rand() % MAX_H;
+    this->directionX = -(rand() % 4);
 }
 
 Enforcer::~Enforcer()
@@ -25,12 +17,9 @@ Enforcer::~Enforcer()
 
 void Enforcer::move()
 {
-    if ((this->directionX || this->directionY) && this->posX > 10 && this->posY > 10)
-    {
-        if (rand() % 6 > 4)
-            stop();
-    }
-    if (!this->directionX && !this->directionY && (rand() % 42 > 40))
+    if ((this->directionX || this->directionY) && (rand() % 42 > 40))
+        stop();
+    if (!this->directionX && !this->directionY && (rand() % 6 > 4))
         restart();
     AShip::move();
 }
@@ -40,7 +29,9 @@ void Enforcer::attack(BulletList &b)
     if (frameSinceLastAttack > 15)
     {
         frameSinceLastAttack = 0;
-        b.pushBullet(new AShip(1, '-', this->posX - 1, this->posY, -1, 0));
+        b.pushBullet(new AShip(10, '*', this->posX - 1, this->posY, -1, 1));
+        b.pushBullet(new AShip(10, '*', this->posX - 1, this->posY, -1, 0));
+        b.pushBullet(new AShip(10, '*', this->posX - 1, this->posY, -1, -1));
         return;
     }
     ++frameSinceLastAttack;
@@ -49,7 +40,7 @@ void Enforcer::attack(BulletList &b)
 void Enforcer::restart()
 {
     if (rand() % 3 > 0)
-     this->directionY = (rand() % 2 > 0) ?  -1 : 1;
+        this->directionY = (rand() % 2 > 0) ? -1 : 1;
     else
-     this->directionX = (rand() % 2 > 0) ?  -1 : 1;
+        this->directionX = (rand() % 2 > 0) ? -1 : 1;
 }

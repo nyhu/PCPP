@@ -1,6 +1,6 @@
 #include "EnemyList.hpp"
 
-EnemyList::EnemyList()
+EnemyList::EnemyList() : nb(0)
 {
     // this->ships = nullptr;
     this->ships = NULL;
@@ -47,9 +47,34 @@ void EnemyList::populateFighter(int nb)
     else
         absciceModif += 2;
     for (int i = 0; *this > i; i++)
-    {
         this->ships[i].setPosition(x + (absciceModif * i), y);
-    }
+}
+
+void EnemyList::populateEnforcer(int nb)
+{
+    if (nb <= 0)
+        return;
+    if (this->ships)
+        delete[] this->ships;
+    this->ships = new Enforcer[nb];
+    this->nb = nb;
+    if (nb == 1)
+        return;
+    int x = this->ships[0].getPosX();
+    int y = this->ships[0].getPosY();
+    int absciceModif = 0;
+    if (y > (PLAYGROUND_H / 2))
+        absciceModif -= 4;
+    else
+        absciceModif += 4;
+    for (int i = 0; *this > i; i++)
+        this->ships[i].setPosition(x, y + (absciceModif * i));
+}
+
+void EnemyList::move()
+{
+    for (int i = 0; *this > i; i++)
+        ships[i].move();
 }
 
 IShip &EnemyList::getShip(int i)

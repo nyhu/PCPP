@@ -94,9 +94,9 @@ void AShip::setPosition(int x, int y)
 
 bool AShip::touchBorder()
 {
-    if (this->posX == 1 || this->posY == 1)
+    if (this->posX <= MIN_W || this->posY <= MIN_H)
         return true;
-    if (this->posX == PLAYGROUND_W - 2 || this->posY == PLAYGROUND_W - 2)
+    if (this->posX >= MAX_W || this->posY >= MAX_H - 2)
         return true;
     return false;
 }

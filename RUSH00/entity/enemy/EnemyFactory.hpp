@@ -22,6 +22,7 @@ class EnemyFactory
     int getEnemyNb();
 
   private:
+    EnemyList *flist;
     EnemyList *elist;
     int nbOfEnemy;
     BulletList bullets;

@@ -63,13 +63,15 @@ void Game::play()
 
         if (this->p1.getPv() == 0)
             this->p1.die();
-        if (this->p1.getLives() == 0)
+        if (p2 && this->p2->getPv() == 0)
+            this->p2->die();
+        if (this->p1.getLives() == 0 || (p2 && p2->getLives() == 0))
             break;
 
         this->display.printHud(p1.getPv(), p1.getLives(), p1.score, this->eFactory.getEnemyNb());
         if (p2)
             this->display.printHudP2(p2->getPv(), p2->getLives(), p2->score, this->eFactory.getEnemyNb());
-        while (this->display.render(this->playfield, this->bgPlayfield))
+        while (this->display.render(playfield, bgPlayfield, playfP1, playfP2))
             std::cout << "please resize your window";
 
         if (takeInputUntilNextFrame(x_startTime))
@@ -123,14 +125,20 @@ void Game::computePlayfield()
 {
     std::memset(this->playfield, ' ', PLAYGROUND_H * PLAYGROUND_W);
     std::memset(this->bgPlayfield, ' ', PLAYGROUND_H * PLAYGROUND_W);
+    std::memset(this->playfP1, ' ', PLAYGROUND_H * PLAYGROUND_W);
+    std::memset(this->playfP2, ' ', PLAYGROUND_H * PLAYGROUND_W);
 
     this->bg.computePlayfield(this->bgPlayfield);
     eFactory.collide(this->p1);
-    this->playfield[this->p1.getPosY()][this->p1.getPosX()] = this->p1.getOutput();
+    this->playfP1[this->p1.getPosY()][this->p1.getPosX()] = this->p1.getOutput();
     if (p2)
     {
         eFactory.collide(*this->p2);
-        this->playfield[this->p2->getPosY()][this->p2->getPosX()] = this->p2->getOutput();
+        this->playfP2[this->p2->getPosY()][this->p2->getPosX()] = this->p2->getOutput();
     }
     this->eFactory.computePlayfield(this->playfield, this->p1, this->p2);
+    p1.bullets.computePlayfield(playfP1);
+    if (p2)
+        p2->bullets.computePlayfield(playfP2);
+
 }
