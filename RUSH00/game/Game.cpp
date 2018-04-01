@@ -42,7 +42,7 @@ void Game::menu()
                 break;
             case 10:
                 if (twoPlayer)
-                    p2 = new Player();
+                    p2 = new Player(30, MAX_H - 20);
                 return;
             }
     }

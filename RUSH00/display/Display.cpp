@@ -1,6 +1,6 @@
 #include "Display.hpp"
 
-Display::Display(): hudP2(NULL)
+Display::Display() : hudP2(NULL)
 {
     initscr(); // init ncurse
     // cbreak();              // desactivate input buffering: one char at a time
@@ -22,7 +22,7 @@ Display::Display(): hudP2(NULL)
     this->mainWinW = (this->maxW - PLAYGROUND_W) / 2;
     this->win = newwin(PLAYGROUND_H, PLAYGROUND_W, this->mainWinH, this->mainWinW); // init a game window
 
-    this->hud = newwin(2, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW); // init a hud window
+    this->hud = newwin(2, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW);              // init a hud window
     this->hudP2 = newwin(2, PLAYGROUND_W, this->mainWinH + PLAYGROUND_H, this->mainWinW); // init a hud window
 }
 
@@ -75,37 +75,31 @@ int Display::resizeHandler()
     this->mainWinW = (this->maxW - PLAYGROUND_W) / 2;
     this->win = newwin(PLAYGROUND_H, PLAYGROUND_W, this->mainWinH, this->mainWinW);
 
-    this->hud = newwin(2, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW); // init a hud window
+    this->hud = newwin(2, PLAYGROUND_W, this->mainWinH - 2, this->mainWinW);              // init a hud window
     this->hudP2 = newwin(2, PLAYGROUND_W, this->mainWinH + PLAYGROUND_H, this->mainWinW); // init a hud window
 
     return 0;
 }
 
-void Display::renderBorders()
+void Display::renderBorders(WINDOW *w, int color)
 {
-    wattron(this->win, COLOR_PAIR(BORDER_COLOR));
-    wborder(this->win, '|', '|', '-', '-', '*', '*', '*', '*');
-    wattron(this->win, COLOR_PAIR(NORMAL_COLOR));
+    wattron(w, COLOR_PAIR(color));
+    wborder(w, '|', '|', '-', '-', '*', '*', '*', '*');
+    wattron(w, COLOR_PAIR(NORMAL_COLOR));
 }
 
 int Display::menu(int nbPlayer)
 {
     if (resizeHandler())
         return 1;
-    renderBorders();
+    renderBorders(this->win, BORDER_COLOR);
 
-    if (!nbPlayer)
-        wattron(this->win, COLOR_PAIR(BORDER_COLOR));
+    wattron(this->win, COLOR_PAIR(nbPlayer ? NORMAL_COLOR : BORDER_COLOR));
     wmove(this->win, PLAYGROUND_H / 2 - 2, PLAYGROUND_W / 2 - 3);
     waddstr(this->win, "1 PLAYER");
-
-    wattron(this->win, COLOR_PAIR(NORMAL_COLOR));
-
-    if (nbPlayer)
-        wattron(this->win, COLOR_PAIR(BORDER_COLOR));
-    wmove(this->win, PLAYGROUND_H / 2 + 2, PLAYGROUND_W / 2 - 3);    
+    wattron(this->win, COLOR_PAIR(nbPlayer ? BORDER_COLOR : NORMAL_COLOR));
+    wmove(this->win, PLAYGROUND_H / 2 + 2, PLAYGROUND_W / 2 - 3);
     waddstr(this->win, "2 PLAYER");
-
     wattron(this->win, COLOR_PAIR(NORMAL_COLOR));
 
     wrefresh(this->win);
@@ -131,13 +125,20 @@ void Display::printPlayfield(t_playfield playfield)
                 mvwaddch(this->win, y, x, playfield[y][x]);
 }
 
-void Display::printHud(int pv, int lives, int score, int enemyNb)
+std::ostringstream Display::hudInfosToStr(int pv, int lives, int score, int enemyNb)
 {
     std::ostringstream s;
     s << "  PV : " << std::right << std::setw(3) << pv << " / " << 100;
     s << "  LIVES : " << std::right << std::setw(3) << lives << " / " << 3;
     s << "  SCORE : " << std::left << std::setw(20) << score;
     s << "  ENEMIES LEFT BEFORE NEXT WAVE: " << std::left << std::setw(20) << enemyNb;
+
+    return s;
+}
+
+void Display::printHud(int pv, int lives, int score, int enemyNb)
+{
+    std::ostringstream s = hudInfosToStr(pv, lives, score, enemyNb);
 
     wattron(this->hud, COLOR_PAIR(BORDER_COLOR));
     wborder(this->hud, '|', '|', '-', '-', '*', '*', '*', '*');
@@ -151,11 +152,7 @@ void Display::printHud(int pv, int lives, int score, int enemyNb)
 
 void Display::printHudP2(int pv, int lives, int score, int enemyNb)
 {
-    std::ostringstream s;
-    s << "  PV : " << std::right << std::setw(3) << pv << " / " << 100;
-    s << "  LIVES : " << std::right << std::setw(3) << lives << " / " << 3;
-    s << "  SCORE : " << std::left << std::setw(20) << score;
-    s << "  ENEMIES LEFT BEFORE NEXT WAVE: " << std::left << std::setw(20) << enemyNb;
+    std::ostringstream s = hudInfosToStr(pv, lives, score, enemyNb);
 
     wattron(this->hudP2, COLOR_PAIR(BORDER_COLOR));
     wborder(this->hudP2, '|', '|', '-', '-', '*', '*', '*', '*');
@@ -171,7 +168,7 @@ int Display::render(t_playfield playfield, t_playfield bgPlayfield)
 {
     if (resizeHandler())
         return 1;
-    renderBorders();
+    renderBorders(this->win, BORDER_COLOR);
     printBgPlayfield(bgPlayfield);
     printPlayfield(playfield);
     wrefresh(this->win);

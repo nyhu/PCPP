@@ -27,9 +27,10 @@ class Display
     void printHudP2(int pv, int lives, int score, int enemyNb);
   private:
     int resizeHandler();
-    void renderBorders();
+    void renderBorders(WINDOW *w, int color);
     void printBgPlayfield(t_playfield playfield);
     void printPlayfield(t_playfield playfield);
+    std::ostringstream hudInfosToStr(int pv, int lives, int score, int enemyNb);
 
     WINDOW *win;
     int maxH;

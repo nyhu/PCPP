@@ -9,6 +9,7 @@ class Player : public IShip
 {
   public:
     Player();
+    Player(int x, int y);
     Player(const Player &p);
     ~Player();
 
@@ -23,6 +24,7 @@ class Player : public IShip
     long score;
     BulletList bullets;
 
+    virtual void respawn();
   private:
     int lives;
 };
