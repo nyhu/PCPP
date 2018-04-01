@@ -10,7 +10,7 @@
 #define MIN_W 1
 #define MIN_H 1
 
-#define FRAME_CLOCK 100000
+#define FRAME_CLOCK 50000
 
 typedef char t_playfield[PLAYGROUND_H][PLAYGROUND_W] ;
 

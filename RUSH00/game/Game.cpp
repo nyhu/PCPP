@@ -23,10 +23,10 @@ Game &Game::operator=(const Game &g)
 
 void Game::play()
 {
+
     while (42)
     {
-        takeInputUntilNextFrame();
-
+        clock_t x_startTime = clock();
         computeMoves();
         computePlayfield();
 
@@ -38,17 +38,18 @@ void Game::play()
         this->display.printHud(p1.getPv(), p1.getLives(), this->eFactory.getScore());
         while (this->display.render(this->playfield))
             std::cout << "please resize your window";
+
+        takeInputUntilNextFrame(x_startTime);
     }
 }
 
-void Game::takeInputUntilNextFrame()
+void Game::takeInputUntilNextFrame(clock_t x_startTime)
 {
     int time_left = 0;
-    clock_t x_startTime, x_countTime;
+    clock_t x_countTime;
 
     this->p1.stop();
 
-    x_startTime = clock();
     time_left = FRAME_CLOCK;
     while (time_left > 0)
     {

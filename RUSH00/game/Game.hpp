@@ -24,7 +24,7 @@ public:
   void play();
 
 private:
-  void takeInputUntilNextFrame();
+  void takeInputUntilNextFrame(clock_t x_startTime);
   void computePlayfield();
   void computeMoves();
 
