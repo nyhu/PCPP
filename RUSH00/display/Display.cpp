@@ -12,7 +12,7 @@ Display::Display()
     start_color(); // init color usage
     init_pair(NORMAL_COLOR, COLOR_WHITE, COLOR_BLACK);
     init_pair(BORDER_COLOR, COLOR_BLACK, COLOR_MAGENTA);
-    init_pair(BACKGROUND_COLOR, COLOR_CYAN, COLOR_BLACK);
+    init_pair(BACKGROUND_COLOR, COLOR_BLUE, COLOR_BLACK);
 
     struct winsize w;
     ioctl(0, TIOCGWINSZ, &w);
