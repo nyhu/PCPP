@@ -11,18 +11,16 @@ EnemyList::~EnemyList()
     if (this->ships)
         delete[] this->ships;
 }
-EnemyList::EnemyList(EnemyList const & src)
+EnemyList::EnemyList(EnemyList const &src)
 {
-    *this = src;   
+    *this = src;
 }
 EnemyList &EnemyList::operator=(EnemyList const &rhs)
 {
     this->ships = rhs.ships;
     this->nb = rhs.nb;
     return (*this);
-
 }
-
 
 bool EnemyList::operator>(int nb)
 {
@@ -77,17 +75,13 @@ void EnemyList::populateMegatrope(int nb)
         return;
     if (this->ships)
         delete[] this->ships;
-    this->nb = (nb / 4 + 1) * 4;
-    this->ships = new Megatrope[this->nb];
+    this->nb = nb;
+    this->ships = new Megatrope[nb];
     int x = this->ships[0].getPosX();
     int y = this->ships[0].getPosY();
-    for (int i = 0; *this > i; i++)
-    {
-        if (i % 2)
-            this->ships[i].setPosition(x, y + (1 * i / 2));
-        else
-            this->ships[i].setPosition(x + (1 * i / 2), y);
-    }
+    this->ships[0].setPosition(x - 1, y - 1);
+    for (int i = 1; *this > i; i++)
+        this->ships[i].setPosition(x, y - 1);
 }
 
 void EnemyList::move()

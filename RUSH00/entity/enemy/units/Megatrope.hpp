@@ -12,6 +12,9 @@ class Megatrope : public IShip
     void move();
     void respawn();
     virtual void attack(BulletList &b);
+  
+  private:
+  int frameNb;
 };
 
 #endif

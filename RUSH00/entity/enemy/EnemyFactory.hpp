@@ -27,7 +27,7 @@ class EnemyFactory
 
     EnemyList *flist;
     EnemyList *elist;
-    EnemyList *mlist;
+//    EnemyList *mlist;
 
     BulletList bullets;
     int nbOfEnemy;
