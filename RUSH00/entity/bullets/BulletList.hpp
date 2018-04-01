@@ -3,9 +3,7 @@
 
 #include <cstring>
 
-#include "../ships/IShip.hpp"
-#include "../enemy/EnemyList.hpp"
-#include "../../settings/settings.hpp"
+#include "../ships/AShip.hpp"
 
 class BulletList
 {
@@ -15,7 +13,7 @@ public:
 
   void pushBullet(AShip *s);
   void moveBullets();
-  int collide(IShip &s);
+  int collide(AShip &s);
   void computePlayfield(t_playfield &playfield);
 
 private:

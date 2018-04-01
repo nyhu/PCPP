@@ -9,8 +9,9 @@ SRC = main.cpp \
 	entity/ships/AShip.cpp \
 	entity/enemy/EnemyFactory.cpp \
 	entity/enemy/EnemyList.cpp \
+	entity/bullets/BulletList.cpp \
 	entity/enemy/units/Fighter.cpp \
-	entity/bullets/BulletList.cpp
+	entity/enemy/units/Enforcer.cpp
 	
 OBJ	= $(SRC:.cpp=.o)
 OS = $(shell uname -s)

@@ -11,7 +11,7 @@ class Fighter : public IShip
 
     void move();
     void restart();
-    void attack(BulletList &b);
+    virtual void attack(BulletList &b);
 };
 
 #endif

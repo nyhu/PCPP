@@ -2,6 +2,7 @@
 #define __ENFORCER__
 
 #include "../../ships/IShip.hpp"
+#include "../../bullets/BulletList.hpp"
 
 class Enforcer : public IShip
 {
@@ -11,7 +12,7 @@ class Enforcer : public IShip
 
     void move();
     void restart();
-    void attack(BulletList &b);
+    virtual void attack(BulletList &b);
 };
 
 #endif
