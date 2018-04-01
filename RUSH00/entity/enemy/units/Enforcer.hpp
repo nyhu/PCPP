@@ -1,13 +1,13 @@
-#ifndef __FIGHTER__
-#define __FIGHTER__
+#ifndef __ENFORCER__
+#define __ENFORCER__
 
 #include "../../ships/IShip.hpp"
 
-class Fighter : public IShip
+class Enforcer : public IShip
 {
   public:
-    Fighter();
-    ~Fighter();
+    Enforcer();
+    ~Enforcer();
 
     void move();
     void restart();

@@ -109,9 +109,9 @@ void Game::computeMoves()
 
 void Game::computeAttacks()
 {
-    p1.bullets.pushBullet(p1.attack());
+    p1.attack(p1.bullets);
     if (p2)
-        p2->bullets.pushBullet(p2->attack());
+        p2->attack(p2->bullets);
     eFactory.attack();
 }
 

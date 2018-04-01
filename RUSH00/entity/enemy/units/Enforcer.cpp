@@ -1,6 +1,6 @@
-#include "Fighter.hpp"
+#include "Enforcer.hpp"
 
-Fighter::Fighter()
+Enforcer::Enforcer()
 {
     this->pv = 10;
 
@@ -19,11 +19,11 @@ Fighter::Fighter()
         this->directionY = -1;
 }
 
-Fighter::~Fighter()
+Enforcer::~Enforcer()
 {
 }
 
-void Fighter::move()
+void Enforcer::move()
 {
     if ((this->directionX || this->directionY) && this->posX > 10 && this->posY > 10)
     {
@@ -35,9 +35,9 @@ void Fighter::move()
     AShip::move();
 }
 
-void Fighter::attack(BulletList &b)
+void Enforcer::attack(BulletList &b)
 {
-    if (frameSinceLastAttack > 12)
+    if (frameSinceLastAttack > 15)
     {
         frameSinceLastAttack = 0;
         b.pushBullet(new AShip(1, '-', this->posX - 1, this->posY, -1, 0));
@@ -46,7 +46,7 @@ void Fighter::attack(BulletList &b)
     ++frameSinceLastAttack;
 }
 
-void Fighter::restart()
+void Enforcer::restart()
 {
     if (rand() % 3 > 0)
      this->directionY = (rand() % 2 > 0) ?  -1 : 1;

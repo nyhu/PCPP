@@ -18,7 +18,7 @@ class Player : public IShip
     int getLives();
     void die();
 
-    AShip *attack();
+    void attack(BulletList &b);
     void move();
 
     long score;

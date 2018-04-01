@@ -2,12 +2,13 @@
 #define __ISHIP__
 
 #include "AShip.hpp"
+#include "../bullets/BulletList.hpp"
 
 class IShip : public AShip
 {
   public:
     virtual ~IShip() {}
-    virtual AShip *attack() = 0;
+    virtual void attack(BulletList &bullet) = 0;
 };
 
 #endif
