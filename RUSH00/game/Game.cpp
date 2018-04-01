@@ -71,7 +71,7 @@ void Game::computeMoves()
 
 void Game::computeAttacks()
 {
-    this->bullets.pushBullet("p1", this->p1.attack());
+    this->bullets.pushBullet(this->p1.attack());
     this->eFactory.attack(this->bullets);
 }
 

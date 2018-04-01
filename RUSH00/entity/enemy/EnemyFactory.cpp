@@ -44,7 +44,7 @@ void EnemyFactory::attack(BulletList &bList)
         IShip &s = this->elist->getShip(i);
         if (s.getPv() == 0)
             continue;
-        bList.pushBullet("elist", i, s.attack());
+        bList.pushBullet(s.attack());
     }   
 }
 

@@ -60,6 +60,14 @@ void AShip::setPosition(int x, int y)
     this->posY = y;
 }
 
+bool AShip::touchBorder() {
+    if (this->posX == 1 || this->posY == 1)
+        return true;
+    if (this->posX == PLAYGROUND_W - 2 || this->posY == PLAYGROUND_W - 2)
+        return true;
+    return false;
+}
+
 int AShip::getPosX()
 {
     return this->posX;
