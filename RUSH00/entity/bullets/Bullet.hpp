@@ -12,8 +12,7 @@
 
 #ifndef BULLET_HPP
 # define BULLET_HPP
-#include "../ships/AShip.hpp"
-#include "../ships/IShip.hpp"
+#include "BulletList.hpp"
 
 class Bullet : public AShip
 {

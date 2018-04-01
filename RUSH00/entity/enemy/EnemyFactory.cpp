@@ -80,7 +80,7 @@ void EnemyFactory::attack()
         IShip &s = this->elist->getShip(i);
         if (s.getPv() == 0)
             continue;
-        bullets.pushBullet(s.attack());
+        s.attack(bullets);
     }
 }
 

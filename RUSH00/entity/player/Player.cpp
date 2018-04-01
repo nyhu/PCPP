@@ -101,15 +101,15 @@ void Player::move()
     bullets.moveBullets();
 }
 
-AShip *Player::attack()
+void Player::attack(BulletList &b)
 {
     if (frameSinceLastAttack > 5)
     {
         frameSinceLastAttack = 0;
-        return new AShip(10, '-', this->posX + 1, this->posY, 1, 0);
+        b.pushBullet(new AShip(10, '-', this->posX + 1, this->posY, 1, 0));
+        return;
     }
     ++frameSinceLastAttack;
-    return NULL;
 }
 
 void Player::respawn()

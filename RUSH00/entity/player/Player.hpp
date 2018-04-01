@@ -3,7 +3,6 @@
 
 #include <curses.h>
 #include "../ships/IShip.hpp"
-#include "../bullets/BulletList.hpp"
 
 class Player : public IShip
 {
@@ -16,10 +15,11 @@ class Player : public IShip
 
     bool control(int input);
     bool controlP2(int input);
+
     int getLives();
     void die();
 
-    AShip *attack();
+    virtual void attack(BulletList &b);
     void move();
 
     long score;

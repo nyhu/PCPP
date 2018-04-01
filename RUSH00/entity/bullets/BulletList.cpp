@@ -67,7 +67,7 @@ void BulletList::moveBullets()
     }
 }
 
-int BulletList::collide(IShip &s)
+int BulletList::collide(AShip &s)
 {
     for (int i = 0; i < BULLETS_MAX_NUMBER; i++)
         if (this->bullets[i] && this->bullets[i]->getPosX() == s.getPosX() && this->bullets[i]->getPosY() == s.getPosY())

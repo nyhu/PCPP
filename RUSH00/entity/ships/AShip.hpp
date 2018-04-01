@@ -4,7 +4,6 @@
 #include <ctime>
 #include <cstdlib>
 
-// #include "../weapons/IWeapon.hpp"
 #include "../../settings/settings.hpp"
 
 class AShip
@@ -21,7 +20,6 @@ class AShip
     virtual void move();
     void stop();
     virtual void respawn();
-    // IBullets *attack();
     int collide(AShip &s);
 
     void setDirection(int x, int y);
