@@ -2,7 +2,8 @@
 
 EnemyList::EnemyList()
 {
-    this->ships = nullptr;
+    // this->ships = nullptr;
+    this->ships = NULL;
 }
 
 EnemyList::~EnemyList()
