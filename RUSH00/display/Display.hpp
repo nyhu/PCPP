@@ -30,7 +30,7 @@ class Display
     void renderBorders(WINDOW *w, int color);
     void printBgPlayfield(t_playfield playfield);
     void printPlayfield(t_playfield playfield);
-    std::ostringstream hudInfosToStr(int pv, int lives, int score, int enemyNb);
+    // std::stringstream hudInfosToStr(int pv, int lives, int score, int enemyNb);
 
     WINDOW *win;
     int maxH;
