@@ -6,7 +6,7 @@
 /*   By: no <no@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 23:42:42 by nboulaye          #+#    #+#             */
-/*   Updated: 2018/04/01 17:33:43 by no               ###   ########.fr       */
+/*   Updated: 2018/04/01 17:53:09 by no               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,5 @@ void	background::move()
 	for(int i = 0;i < this->nb_star; i++)
 		this->star[i]->move();
 }
-
-
-
-// std::ostream &				operator<<(std::ostream & o, background const & rhs)
-// {
-// 	(void)i;
-// 	return (o);
-// }
 
 

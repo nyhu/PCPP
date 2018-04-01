@@ -20,6 +20,10 @@ Game::~Game()
 Game &Game::operator=(const Game &g) 
 {
     this->display = g.display;
+    this->p1 = g.p1;
+    this->p2 = g.p2;
+    this->eFactory = g.eFactory;
+    this->bg = g.bg;
     return *this;
 }
 
