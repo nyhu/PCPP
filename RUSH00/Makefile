@@ -5,7 +5,10 @@ SRC = main.cpp \
 	game/Game.cpp \
 	display/Display.cpp \
 	entity/player/Player.cpp \
-	entity/ships/AShip.cpp
+	entity/ships/AShip.cpp \
+	entity/enemy/EnemyFactory.cpp \
+	entity/enemy/EnemyList.cpp \
+	entity/enemy/units/Fighter.cpp
 OBJ	= $(SRC:.cpp=.o)
 OS = $(shell uname -s)
 

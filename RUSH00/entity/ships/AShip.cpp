@@ -1,6 +1,6 @@
 #include "AShip.hpp"
 
-AShip::AShip(): pv(100), ouput('0'), posX(0), posY(0), directionX(0), directionY(0)
+AShip::AShip() : pv(100), ouput('0'), posX(0), posY(0), directionX(0), directionY(0)
 {
 }
 
@@ -8,7 +8,8 @@ AShip::~AShip()
 {
 }
 
-void AShip::move() {
+void AShip::move()
+{
     this->posX += this->directionX;
     this->posY += this->directionY;
     if (this->posX < 1)
@@ -21,19 +22,29 @@ void AShip::move() {
         this->posY = PLAYGROUND_H - 2;
 }
 
-void AShip::setDirection(int x, int y) {
+void AShip::stop()
+{
+    this->directionY = 0;
+    this->directionX = 0;
+}
+
+void AShip::setDirection(int x, int y)
+{
     this->directionX = x;
     this->directionY = y;
 }
 
-int AShip::getPosX() {
+int AShip::getPosX()
+{
     return this->posX;
 }
 
-int AShip::getPosY() {
+int AShip::getPosY()
+{
     return this->posY;
 }
 
-char AShip::getOutput() {
+char AShip::getOutput()
+{
     return this->ouput;
 }

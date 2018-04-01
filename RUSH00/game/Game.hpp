@@ -10,6 +10,7 @@
 #include "../settings/settings.hpp"
 #include "../display/Display.hpp"
 #include "../entity/player/Player.hpp"
+#include "../entity/enemy/EnemyFactory.hpp"
 
 class Game
 {
@@ -23,14 +24,14 @@ public:
   void play();
 
 private:
-  void annonce();
   void takeInputUntilNextFrame();
   void computePlayfield();
   void computeMoves();
 
+  Display display;
   t_playfield playfield;
   Player p1;
-  Display *display;
+  EnemyFactory eFactory;
 };
 
 #endif

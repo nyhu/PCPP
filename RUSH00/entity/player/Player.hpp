@@ -12,7 +12,6 @@ class Player : public AShip
     ~Player();
 
     void control(int input);
-    void resetControl();
 };
 
 #endif

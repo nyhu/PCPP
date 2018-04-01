@@ -11,12 +11,6 @@ Player::~Player()
 {
 }
 
-void Player::resetControl()
-{
-    this->directionY = 0;
-    this->directionX = 0;
-}
-
 void Player::control(int input)
 {
     switch (input)

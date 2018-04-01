@@ -10,8 +10,6 @@
 #define NORMAL_COLOR 1
 #define BORDER_COLOR 2
 
-typedef char t_playfield[PLAYGROUND_H][PLAYGROUND_W] ;
-
 class Display
 {
   public:
