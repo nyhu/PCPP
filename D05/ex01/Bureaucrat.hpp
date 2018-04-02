@@ -3,6 +3,9 @@
 
 #include <stdexcept>
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -20,6 +23,7 @@ class Bureaucrat
     class GradeTooHighException : std::exception {};
     class GradeTooLowException : std::exception {};
 
+    void signForm(Form &f);
   private:
     Bureaucrat();
     Bureaucrat(Bureaucrat const &b);
