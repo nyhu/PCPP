@@ -1,9 +1,16 @@
 #include "Intern.hpp"
 
 Intern::Intern() {}
-Intern::Intern(Intern const &Intern) {}
+Intern::Intern(Intern const &Intern)
+{
+    (void)Intern;
+}
 Intern::~Intern() {}
-Intern &Intern::operator=(Intern const &i) { return *this; }
+Intern &Intern::operator=(Intern const &i)
+{
+    (void)i;
+    return *this;
+}
 
 Form *Intern::makeForm(std::string const name, std::string const target)
 {

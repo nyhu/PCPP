@@ -3,19 +3,39 @@
 OfficeBlock::OfficeBlock() : intern(NULL), signOfficer(NULL), execOfficer(NULL) {}
 OfficeBlock::OfficeBlock(Intern &i, Bureaucrat &signOfficer, Bureaucrat &execOfficer)
     : intern(&i), signOfficer(&signOfficer), execOfficer(&execOfficer) {}
-OfficeBlock::~OfficeBlock(){}
+OfficeBlock::~OfficeBlock() {
+    if (signOfficer)
+        delete signOfficer;
+    if (intern)
+        delete intern;
+    if (execOfficer)
+        delete execOfficer;
+}
 
 void OfficeBlock::setExecutor(Bureaucrat &b)
 {
-    execOfficer = &b;
+    execOfficer = new Bureaucrat(b);
 }
 void OfficeBlock::setSigner(Bureaucrat &b)
 {
-    signOfficer = &b;
+    signOfficer = new Bureaucrat(b);
 }
-void OfficeBlock::setIntern(Intern &i)
+void OfficeBlock::setIntern()
 {
-    intern = &i;
+    intern = new Intern();
+}
+
+Bureaucrat *OfficeBlock::getSigner()
+{
+    return signOfficer;
+}
+Bureaucrat *OfficeBlock::getExecutor()
+{
+    return execOfficer;
+}
+Intern *OfficeBlock::getIntern()
+{
+    return intern;
 }
 
 void OfficeBlock::doBureaucracy(std::string name, std::string target)
