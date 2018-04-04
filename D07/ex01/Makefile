@@ -2,7 +2,7 @@ NAME = template
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp iter.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

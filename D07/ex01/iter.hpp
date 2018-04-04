@@ -21,11 +21,11 @@ void test(T *arr, U const &len)
 {
     std::cout << "orign array : " << std::endl;
     for (U i = 0; i < len; i++)
-        std::cout << "index : " << i << "value : " << arr[i] << std::endl;
+        std::cout << "index : " << i << " value : " << arr[i] << std::endl;
     iter(arr, len, increm<T>);
     std::cout << "modified array : " << std::endl;
     for (U i = 0; i < len; i++)
-        std::cout << "index : " << i << "value : " << arr[i] << std::endl;
+        std::cout << "index : " << i << " value : " << arr[i] << std::endl;
 }
 
 #endif
