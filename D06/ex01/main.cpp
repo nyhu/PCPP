@@ -4,46 +4,47 @@
 
 struct Data
 {
-	std::string		s1;
-	int 			n;
-	std::string		s2;
+	std::string s1;
+	int n;
+	std::string s2;
 };
 
-std::string randStr(void) {
-    std::string s(9, ' ');
-    static const char alphabet[] = "0123456789aeiouybcdfghjklmnpqrstvwxz";
+std::string randStr(void)
+{
+	std::string s(8, ' ');
+	static const char alphabet[] = "0123456789aeiouybcdfghjklmnpqrstvwxz";
 
-    for (int i = 0; i < 9; i++)
-        s[i] = alphabet[rand() % (sizeof(alphabet))];
+	for (int i = 0; i < 8; i++)
+		s[i] = alphabet[rand() % (sizeof(alphabet) - 1)];
 
-    return s;
+	return s;
 }
 
-void		*serialize( void )
+void *serialize(void)
 {
-	Data	*data = new Data();
+	Data *data = new Data();
 
 	data->s1 = randStr();
-	data->n  = rand();
+	data->n = rand();
 	data->s2 = randStr();
 
 	std::cout << "origin->s1: " << data->s1 << std::endl;
-	std::cout << "origin->n : " << data->n  << std::endl;
+	std::cout << "origin->n : " << data->n << std::endl;
 	std::cout << "origin->s2: " << data->s2 << std::endl;
 
 	return data;
 }
 
-int			main( void )
+int main(void)
 {
 	srand(std::time(NULL));
 
-	void	*raw = serialize();
+	void *raw = serialize();
 
-	Data	*data = reinterpret_cast<Data*>(raw);
+	Data *data = reinterpret_cast<Data *>(raw);
 
 	std::cout << "result->s1: " << data->s1 << std::endl;
-	std::cout << "result->n : " << data->n  << std::endl;
+	std::cout << "result->n : " << data->n << std::endl;
 	std::cout << "result->s2: " << data->s2 << std::endl;
 
 	delete data;
