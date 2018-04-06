@@ -26,7 +26,8 @@ class Array
 
     virtual ~Array()
     {
-        delete[] _array;
+        if (_size != 0)
+            delete[] _array;
     }
 
     Array &operator=(Array const &rhs)
@@ -34,10 +35,10 @@ class Array
         if (_size != 0)
             delete _array;
 
-        size_t array_size = rhs.size();
-        _array = new T[array_size];
+        _size = rhs.size();
+        _array = new T[_size];
 
-        for (size_t i = 0; i < array_size; i++)
+        for (size_t i = 0; i < _size; i++)
             _array[i] = rhs[i];
         return *this;
     }

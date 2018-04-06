@@ -16,7 +16,6 @@ int			main( void )
 	{
 		std::cerr << e.what() << ": Array too small" << std::endl;
 	}
-
     Array<char> char_array(12);
 
 	char_array[8] = 120;
