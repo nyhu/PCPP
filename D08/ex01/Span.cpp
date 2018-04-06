@@ -1,54 +1,52 @@
 #include "Span.hpp"
 
-Span::Span() {}
+Span::Span() {
+    _container.reserve(0);
+}
 Span::Span(Span const &s)
 {
     *this = s;
 }
 Span::Span(unsigned int n)
 {
-    _container.assign(n, 0);
-    _it = _container.begin();
+    _container.reserve(n);
 }
+
 Span &Span::operator=(Span const &s)
 {
     _container = s._container;
-    _it = s._it;
     return *this;
 }
 
 void Span::addNumber(int i)
 {
-    if (_it == _container.end())
+    if (_container.size() >= _container.capacity())
         throw std::logic_error("span already full");
-    *_it = i;
-    _it++;
+    _container.push_back(i);
 }
 
 int Span::longestSpan()
 {
-    std::vector<int>::iterator begin = _container.begin();
-    if (_it == begin || _it == begin + 1)
+    if (_container.size() < 2)
         throw std::logic_error("span does not contain enough element for longest span");
 
-    int result = std::abs(*begin - *(begin + 1));
-    for (; begin < _it; ++begin)
-        if (std::abs(*begin - *(begin - 1)) > result)
-            result = std::abs(*begin - *(begin - 1));
+    int result = std::abs(_container[0] - _container[1]);
+    for (unsigned int i = 2; i < _container.size(); ++i)
+        if (std::abs(_container[i] - _container[i - 1]) > result)
+            result = std::abs(_container[i] - _container[i - 1]);
 
     return result;
 }
 
 int Span::shortestSpan()
 {
-    std::vector<int>::iterator begin = _container.begin();
-    if (_it == begin || _it == begin + 1)
+    if (_container.size() < 2)
         throw std::logic_error("span does not contain enough element for shortest span");
 
-    int result = std::abs(*begin - *(begin + 1));
-    for (; begin < _it; ++begin)
-        if (std::abs(*begin - *(begin - 1)) < result)
-            result = std::abs(*begin - *(begin - 1));
+    int result = std::abs(_container[0] - _container[1]);
+    for (unsigned int i = 2; i < _container.size(); ++i)
+        if (std::abs(_container[i] - _container[i - 1]) < result)
+            result = std::abs(_container[i] - _container[i - 1]);
 
     return result;
 }

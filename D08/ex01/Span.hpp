@@ -1,16 +1,15 @@
 #ifndef __SPAN__
 #define __SPAN__
 
-#include <algorithm>
+#include <vector>
 #include <stdexcept>
 #include <cmath>
 
 class Span {
-    Span();
     std::vector<int> _container;
-    std::vector<int>::iterator _it;
 
     public:
+    Span();
     Span(unsigned int n);
     Span(Span const &s);
     virtual ~Span();
