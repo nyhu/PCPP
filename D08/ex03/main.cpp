@@ -131,12 +131,16 @@ static void translate(std::string const &file)
 
 int main(int ac, char **argv)
 {
+	if (ac == 1)
+	{
+		std::cout << "usage: ./openminder <filename> [<otherfilesnames>]" << std::endl;
+	}
     for (int i = 1; i < ac; i++)
     {
         std::ifstream inputFile(argv[i]);
         if (!inputFile.is_open())
         {
-            std::cout << "openminder error: cannot open " << argv[i] << std::endl;
+            std::cout << "mindopener error: cannot open " << argv[i] << std::endl;
             continue;
         }
 
@@ -146,7 +150,12 @@ int main(int ac, char **argv)
             file += line;
         inputFile.close();
  
-        translate(file);
+		try {
+			translate(file);
+		}
+		catch (std::exception &e) {
+			std::cout << "mindopener error on file: " << argv[i] << ": " << e.what() << std::endl;
+		}
     }
     return 0;
 }
